@@ -1,0 +1,46 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Autoevaluaciones";
+    string guion = "NC";
+    List<MvcSEDOC.Controllers.AdminController.DocenteDepto>  misdatos = ViewBag.datos;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+<h2>Docentes Del Departamento @ViewBag.departamento</h2>
+
+<table style="width:100%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="list" style='width:100%'>
+                    <thead> 
+                        <tr class='sub'>                            
+                            <th align="center" colspan="2">Docente</th>
+                            <th align="center" colspan="2">Acciones</th>    
+                        </tr>
+                    </thead>                       
+                <tbody> 
+                @foreach (var lista in misdatos)
+                { 
+                    <tr>
+                        <td colspan="2">@lista.nombre @lista.apellido</td>
+                        <td align="center" ><a class='edit'>@Html.ActionLink("Labores", "ShowLabores", new { idusuario = @lista.idususaio })</a></td> 
+                        <td align="center" ><a class='edit'>@Html.ActionLink("Autoevaluaciones", "ShowAutoDocentes", new { idusuario = @lista.idususaio })</a></td> 
+                   </tr>
+                 }
+                 </tbody>             
+                    
+                </table>                 
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td>@Html.ActionLink("Volver", "ListDocente", "Admin")</td>        
+    </tr>
+   
+</table> 

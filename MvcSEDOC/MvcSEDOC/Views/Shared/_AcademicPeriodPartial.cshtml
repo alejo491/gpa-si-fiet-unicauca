@@ -1,0 +1,29 @@
+﻿@{
+    int idAcadPeriodSel = -1;
+    try
+    {
+        idAcadPeriodSel = (int)HttpContext.Current.Session["currentAcadPeriod"];
+    }
+    catch
+    {
+        Response.Redirect("/sedoc");
+    }
+    string controller_name = ViewContext.RouteData.Values["Controller"].ToString();
+    string view_name = ViewContext.RouteData.Values["Action"].ToString();
+    int x = 3;
+}
+
+<div class="ui-widget">
+    <form id="form_acadperiod" action="@Url.Action("ChangeCurrentAcademicPeriod", "User")" method="post">
+        <fieldset>
+            <label for="current_academic_period"><strong>Periodo Académico Actual</strong> </label>
+            <select name="current_academic_period" id="current_academic_period" ac_selected="@(idAcadPeriodSel)" onchange="changeAcademicPeriod()">
+            </select>
+            <input type="hidden" name="controller_name" value="@(controller_name)" />
+            <input type="hidden" name="view_name" value="@(view_name)" />
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">   
+    loadAcademicPeriods();
+</script>

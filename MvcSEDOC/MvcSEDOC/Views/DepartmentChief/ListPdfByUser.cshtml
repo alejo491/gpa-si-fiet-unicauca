@@ -1,0 +1,52 @@
+﻿@using MvcSEDOC.Controllers;
+@model MvcSEDOC.Models.usuario
+
+@{
+    ViewBag.Title = "Revisar archivos de soporte";
+    var lstUserInfo = ViewBag.lstInfo;
+    string sPeriod = "";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+<h2>Soportes registrados para @ViewBag.UserFullName </h2>
+
+<table cellpadding="3" width="100%">
+<tr><th  align="left">Tipo Evaluación</th><th align="left">Labor Evaluada</th>
+<th align="left">Fecha/Hora</th><th align="left">Archivo</th></tr>
+@foreach (DepartmentChiefController.BasicFileInfo oInfo in lstUserInfo)
+{
+    if (sPeriod != oInfo.sPeriod)
+    {
+     <tr style="background-color:rgb(245, 243, 229)"><th colspan="4" align="center">@oInfo.sPeriod</th></tr>
+        {
+            sPeriod = oInfo.sPeriod;
+        }
+    }
+    <tr><td>    
+    @if (oInfo.sType == "autoev")
+    {
+        <span>Autoevaluación</span>
+    }
+    else if (oInfo.sType == "chief")
+    {
+        <span>Jefe</span>
+    }
+    else if (oInfo.sType == "student")
+    {
+        <span>Estudiante</span>
+    }
+    </td>
+    <td>@oInfo.sName</td>
+    @{
+    string sDate = oInfo.sDateTime.Substring(0, 4) + "/" + oInfo.sDateTime.Substring(4, 2)
+        + "/" + oInfo.sDateTime.Substring(6, 2) + " " + oInfo.sDateTime.Substring(8, 2) + ":" +
+        oInfo.sDateTime.Substring(10, 2) + ":" + oInfo.sDateTime.Substring(12, 2);
+    }
+    <td>@sDate</td>
+    <td><a href="../pdfsupport/@oInfo.sFullPath" target="_blank" >Descargar</a> </td>
+    </tr>
+}
+</table>

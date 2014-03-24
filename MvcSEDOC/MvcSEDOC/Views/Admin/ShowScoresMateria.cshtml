@@ -1,0 +1,80 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Autoevaluaciones";
+    string guion = "NC";
+    List<MvcSEDOC.Models.ConsolidadoDocencia> mireporte = ViewBag.reporte;   
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+<h2>Evaluaciones De La Materia @mireporte[0].labDocencia[0].nombremateria</h2>
+
+<table style="width:100%"> 
+    <tr>
+        <td>
+            <div class="ui-widget"> 
+              <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                    @if (mireporte.Count > 0)
+                    {
+                          <table class="report" style='width:100%'>
+                                <tr>
+                                    <td ><strong> Fecha De Consulta</strong> </td>
+                                    <td colspan="2">@mireporte[0].fechaevaluacion</td>
+                                </tr>
+                                <tr>                            
+                                    <td ><strong> Periodo</strong> </td>
+                                    <td>@mireporte[0].periodoanio-@mireporte[0].periodonum</td>                           
+                                </tr>
+                                <tr>
+                                    <td width="30%"><strong>Materia</strong> </td>
+                                    <td colspan="4">@mireporte[0].labDocencia[0].nombremateria</td>
+                                </tr>
+                                <tr>
+                                    <td width="30%"><strong>Código</strong> </td>
+                                    <td colspan="4">@mireporte[0].labDocencia[0].codmateria</td>
+                                </tr>
+                                                          
+                          </table>
+                          <br />
+                    }
+                    
+                    @foreach (MvcSEDOC.Models.ConsolidadoDocencia AUlabor in mireporte)
+                    {
+                        foreach (MvcSEDOC.Models.DetalleDocencia eva in AUlabor.labDocencia)
+                        {                                                    
+                            <table id='LaborChiefs' class='report' style='width:100%'> 
+                            <thead>
+                                <tr class='sub'>                            
+                                    <th align="center" >Docente</th>
+                                    <th align="center" colspan="2">@AUlabor.nombredocente</th>                               </tr> 
+                                <tr>
+                                    <th align="center">Eva Est</th>
+                                    <th align="center">AutoEv</th>
+                                    <th align="center">Eva Jefe</th>                                    
+                                </tr>
+                            </thead>                 
+                            
+                            <tbody> 
+                               <tr>
+                                    <td>@((eva.evaluacionestudiante == -1) ? "-" : eva.evaluacionestudiante.ToString())</td>
+                                    <td>@((eva.evaluacionautoevaluacion == -1) ? "-" : eva.evaluacionautoevaluacion.ToString())</td>
+                                    <td>@((eva.evaluacionjefe == -1) ? "-" : eva.evaluacionjefe.ToString())</td>                                    
+                                </tr>                          
+                            </tbody>              
+                    
+                        </table>                   
+                        <br />                           
+                        }
+                    }
+                    NC : "No Calificado"
+                </div>          
+          </div>
+        </td>
+    </tr> 
+    <tr>
+        <td><h3>@Html.ActionLink("Volver", "ListDocente", "Admin")</h3></td>
+    </tr>
+</table> 

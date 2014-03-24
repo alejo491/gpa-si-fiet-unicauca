@@ -1,0 +1,94 @@
+﻿@model  UsuarioSimple
+
+@{
+    ViewBag.Title = "Crear Usuario";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+<h2>Registrar Usuario</h2>
+
+@using (Html.BeginForm("CreateUser","Admin", FormMethod.Post, null))
+{
+    <table>
+    <tr><td>
+    Usuario Unicauca:
+    </td>
+    <td>
+    @Html.EditorFor(Model => Model.UserName)
+    @Html.ValidationMessageFor(Model => Model.UserName)
+    </td>
+    </tr>
+    
+    <tr><td>
+    Nombres:
+    </td>
+    <td>
+    @Html.EditorFor(Model => Model.Nombres)
+    @Html.ValidationMessageFor(Model => Model.Nombres)
+    </td>
+    </tr>
+
+    <tr><td>
+    Apellidos:
+    </td>
+    <td>
+    @Html.EditorFor(Model => Model.Apellidos)
+    @Html.ValidationMessageFor(Model => Model.Apellidos)
+    </td>
+    </tr>
+
+    <tr><td>
+    Identificación:
+    </td>
+    <td>
+    @Html.EditorFor(Model => Model.Identification)
+    @Html.ValidationMessageFor(Model => Model.Identification)
+    </td>
+    </tr>
+
+
+    <tr><td>
+    Rol:
+    </td>
+    <td>
+    @Html.DropDownListFor(Model => Model.Role, (List<SelectListItem>) ViewBag.lstRoles)    
+    @Html.ValidationMessageFor(Model => Model.Role)
+    </td>
+    </tr>
+
+    <tr><td colspan="2"><input type="submit" value="Crear Usuario" /> </td></tr>
+    
+    </table>
+}
+@if (ViewBag.sResult != "")
+{ 
+    <div style="color: green; font-size: 12pt;">
+    @ViewBag.sResult
+    </div>    
+}
+<br /><br /><br />
+<h2>Restaurar Contraseña</h2>
+
+@using (Html.BeginForm("RestorePassword", "Admin", FormMethod.Post))
+{ 
+    <table>
+        <tr><td>
+    Usuario a restaurar:
+    </td>
+    <td>
+    @Html.TextBox("txtUserName")
+    </td>
+    </tr>
+    <tr><td colspan="2"><input type="submit" value="Restaurar Contraseña" /> </td></tr>
+    
+    </table>
+
+    
+}
+
+
+

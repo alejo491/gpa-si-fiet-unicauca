@@ -1,0 +1,68 @@
+﻿@model MvcSEDOC.Models.SpreadsheetModel
+           
+@{
+    ViewBag.Title = "ExportToExcel";
+}
+@{
+    Layout = null;
+    Response.ContentType = "application/vnd.ms-excel";
+    Response.AddHeader("Content-Disposition", "attachment; filename=" + Model.fileName);
+    //Content-Disposition is defined in RFC-2183
+}
+<?xml version="1.0" encoding="utf-16"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+
+    <ss:Worksheet ss:Name="Docentes">
+        <ss:Table>
+        <ss:Row>
+            <ss:Cell>
+            </ss:Cell>
+            <ss:Cell>
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Reporte de calificaciones de docentes</B></ss:Data>
+            </ss:Cell>
+        </ss:Row>
+        <ss:Row>
+        </ss:Row>
+        @for (int i = 0; i < Model.contents.GetLength(0); ++i)
+        {
+            <ss:Row>
+            @for (int j = 0; j < Model.contents.GetLength(1); ++j)
+            {
+
+                if (i == 0)
+                {
+                       <ss:Cell>   
+                      <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.contents[i, j]</B></ss:Data>
+                      </ss:Cell>
+                }
+                else
+                {
+                    if (j > 5)
+                    {
+                        
+                        if (Model.contents[i, j] == "-1" || Model.contents[i, j] == "0")
+                        { 
+                            <ss:Cell>   
+                                <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">NC</ss:Data>
+                            </ss:Cell>
+                        }
+                        else
+                        {
+                    <ss:Cell>
+                      <ss:Data ss:Type="Number">@Model.contents[i, j]</ss:Data>                      
+                    </ss:Cell>
+                        }                  
+                    }
+                    else
+                    {
+                    <ss:Cell>
+                      <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><I>@Model.contents[i, j]</I></ss:Data>
+                    </ss:Cell>
+                    }
+                }
+            }
+            </ss:Row>
+        }
+        </ss:Table>
+    </ss:Worksheet>
+</ss:Workbook>

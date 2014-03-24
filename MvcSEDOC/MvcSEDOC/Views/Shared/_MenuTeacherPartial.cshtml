@@ -1,0 +1,48 @@
+﻿ @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+     int usuarioId = (int)HttpContext.Current.Session["docenteId"];   
+     if (!User.IsInRole("Teacher"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }
+   }
+
+<div id="accordionMenu" optionselected="@ViewBag.optionmenu">
+    @if (periodoActual != 1)
+    {
+    <h3><a href="#">Autoevaluación</a></h3>
+    <div>
+        <p>
+            <ul>                    
+                <li>@Html.ActionLink("Realizar Autoevaluación", "EvaluarLabor", "Teacher")</li>
+            </ul>
+        </p>
+	</div>
+    }
+    <h3><a href="#">Consultar</a></h3>
+    <div>
+        <p>
+            @*<ul>
+                <li>@Html.ActionLink("Calificación Por Labores","GetLaborType","Teacher")</li>
+            </ul>
+            <hr />*@
+            <ul>
+                <td align="center">@Html.ActionLink("Calificación Total", "ShowScores", new { idusuario = usuarioId })</td>
+            </ul>
+            <hr />            
+            <ul>
+                <li>@Html.ActionLink("Autoevaluaciones", "VerAutoevaluaciones", "Teacher")</li>
+            </ul>
+        </p>
+    </div>
+    <h3><a href="#">Cambiar contraseña</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Cambiar contraseña", "ChangePass", "Teacher")</li>
+                </ul>
+            </p>
+        </div>
+</div>

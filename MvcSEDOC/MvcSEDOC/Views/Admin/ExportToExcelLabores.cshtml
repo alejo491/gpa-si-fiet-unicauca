@@ -1,0 +1,745 @@
+﻿@model MvcSEDOC.Models.SpreadsheetModelLabores
+           
+@{
+    ViewBag.Title = "ExportToExcel";
+}
+@{
+    Layout = null;
+    Response.ContentType = "application/vnd.ms-excel";
+    Response.AddHeader("Content-Disposition", "attachment; filename=" + Model.fileName);
+    //Content-Disposition is defined in RFC-2183
+}
+<?xml version="1.0" encoding="utf-16"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+    @*@foreach (string tipo in Model.detalleslabores)
+    {
+     switch (tipo)  
+     {
+         case "Gestion":*@
+            
+            <ss:Worksheet ss:Name="Gestion">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte Labores De Gestion</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[10]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[13]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labGestion.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labGestion[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labGestion[i].nombrecargo</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labGestion[i].horassemana</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labGestion[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labGestion[i].unidad</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>            
+                    } 
+                </ss:Table>
+            </ss:Worksheet>
+            <ss:Worksheet ss:Name="Social">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte Labores Sociales</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[14]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[15]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[13]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[16]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[17]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labSocial.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].resolucion</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].nombreproyecto</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].horassemana</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].unidad</B></ss:Data>
+                        </ss:Cell>                       
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].fechainicio</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].fechafin</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labSocial[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet> 
+           <ss:Worksheet ss:Name="Docencia">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte Labores De Docencia</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[20]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[21]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[22]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[19]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[24]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[23]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[25]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[26]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>    
+                    @for (int i = 0; i < Model.labDocencia.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].labDoc.idlabor</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].labDoc.idmateria</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.codigomateria</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.nombremateria</B></ss:Data>
+                        </ss:Cell>                       
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.grupo</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.semestre</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.creditos</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].labDoc.horassemana</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDocencia[i].DocMateria.tipo</B></ss:Data>
+                        </ss:Cell>                        
+                    </ss:Row>            
+                    }          
+      
+                </ss:Table>
+            </ss:Worksheet>
+            <ss:Worksheet ss:Name="Tra Gr Investigación">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte De Labores De Trabajo De Grado De Investigación</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[29]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[30]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labTrabajoDegradoInvestigacion.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDegradoInvestigacion[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDegradoInvestigacion[i].titulotrabajo</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDegradoInvestigacion[i].horassemana</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDegradoInvestigacion[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDegradoInvestigacion[i].codigoest</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet> 
+           <ss:Worksheet ss:Name="Desarrollo Profesoral">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte De Labores De Desarrollo Profesoral</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[14]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[18]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labDesarrolloProfesoral.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDesarrolloProfesoral[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDesarrolloProfesoral[i].resolucion</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDesarrolloProfesoral[i].nombreactividad</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDesarrolloProfesoral[i].horassemana</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labDesarrolloProfesoral[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet>
+           <ss:Worksheet ss:Name="Investigación">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte De Labores De Investigación</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[28]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[15]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[16]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[17]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labInvestigacion.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].codigovri</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].nombreproyecto</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].horassemana</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].fechainicio</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labInvestigacion[i].fechafin</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet>
+           <ss:Worksheet ss:Name="Trabajo Grado">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte De Labores De Trabajo De Grado</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[14]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[29]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[12]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[30]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[16]</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[17]</B></ss:Data>
+                        </ss:Cell>
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labTrabajoDeGrado.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].resolucion</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].titulotrabajo</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].horassemana</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].semanaslaborales</B></ss:Data>
+                        </ss:Cell>                        
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].codigoest</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].fechainicio</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labTrabajoDeGrado[i].fechafin</B></ss:Data>
+                        </ss:Cell> 
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet>
+           <ss:Worksheet ss:Name="Otra">
+                <ss:Table>
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Column ss:Width = "100" />
+                <ss:Row>
+                    <ss:Cell>
+                    </ss:Cell>
+                    <ss:Cell>
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte De Otras Labores</h1></B></ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row></ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+                    </ss:Cell>
+                    <ss:Cell >
+                    <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+                    </ss:Cell>
+                </ss:Row>
+                <ss:Row>
+                </ss:Row>        
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[1]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[31]</B></ss:Data>
+                        </ss:Cell>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.datos[11]</B></ss:Data>
+                        </ss:Cell>                        
+                    </ss:Row>  
+                    @for (int i = 0; i < Model.labOtras.Count; ++i)
+                    {
+                    <ss:Row>
+                        <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labOtras[i].idlabor</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labOtras[i].descripcion</B></ss:Data>
+                        </ss:Cell>
+                         <ss:Cell>   
+                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labOtras[i].horassemana</B></ss:Data>
+                        </ss:Cell>                        
+                    </ss:Row>            
+                    }
+           </ss:Table>
+           </ss:Worksheet>
+</ss:Workbook>

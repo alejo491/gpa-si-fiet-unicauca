@@ -1,0 +1,70 @@
+﻿@using MvcSEDOC.Controllers;
+@model MvcSEDOC.Models.usuario
+
+@{
+    ViewBag.Title = "Asignar Jefe de Labor";
+   // var item = ((List<MvcSEDOC.Controllers.DepartmentChiefController.UserDocente>)ViewBag.datos).First();    
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+
+
+<h2>Asignar Jefe de Labor</h2>
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+    
+}
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="accepted">@ViewBag.Message</div>   
+}
+@if (ViewBag.periodo == 0)
+{
+    <div class="errorEd">No puede asignar jefes de labores en este periodo</div>
+}
+else
+{ 
+<script src="@Url.Content("~/Scripts/DepartmentChief-AssingWork.js")" type="text/javascript"></script>  
+     
+<table width="100%">
+    <tr>
+        <td>
+            <div class="ui-widget">
+                <input type="hidden" id="depto" value="1"/>  
+                <label for="nombre" ><strong>Departamento:  @ViewBag.datos </strong></label> <br />     
+                <label><b>Nota:</b> El numero de horas debe estar entre 1 y 20</label>
+               <input type="hidden" id="search_term"  value="1"/>        
+            </div>
+        </td>        
+    </tr>    
+    <tr>
+         <td>
+              <div class="ui-widget">
+                <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+              </div>
+         </td>
+    </tr>
+    <tr>
+       <td>
+       <table cellpadding="0" cellspacing="0"><tr>
+       <td class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="width: 80px; height: 25px; vertical-align: middle; text-align: center;">
+       <a href="#" id="save">Guardar</a>      
+       </td>
+       </tr></table>
+       
+       </td>
+    </tr>
+</table>
+<br />
+<p>
+Las labores que no se muestran ya tienen un jefe asignado.
+Cualquier inquietud comuniquese con el administrador.
+</p>
+<div id="dialogSaveGroupConfirm" title="Confirmar envio?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Esta seguro que desea guardar esta información?</p>
+</div>
+}

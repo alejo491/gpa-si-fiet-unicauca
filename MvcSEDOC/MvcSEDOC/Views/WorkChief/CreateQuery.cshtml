@@ -1,0 +1,57 @@
+﻿@model MvcSEDOC.Models.usuario
+@{
+    ViewBag.Title = "Consultar Evaluaciones";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+
+<h2>Consultar Evaluaciones</h2>
+
+@if (ViewBag.datos == 0)
+{
+    <div class="errorEd">No se le asigno dirigir labores en este periodo</div>
+  
+}
+else
+{
+using (Html.BeginForm())
+{
+<table style="width:80%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table id='LaborChiefs' class='list' style='width:100%'>
+                      <thead><tr><th align='center' colspan='6'>Docentes Del Departamento De @ViewBag.departamento</th></tr> 
+                                <tr class='sub'>
+                                    <th align="center">Apellidos</th>
+                                    <th align="center">Nombres</th>
+                                    <th align="center" colspan='2'>Acciones</th>
+                                 </tr>
+                      </thead>
+                      <tbody>
+                            @foreach (var item in ViewBag.lista)
+                            {
+                                <tr>
+                                    <td>@item.apellidos</td>
+                                    <td>@item.nombres</td>
+                                    <td align="center">@Html.ActionLink("Calificaciones", "ShowScores", new { idusuario = @item.idusuario })</td>
+                                    @*<form action='/WorkChief/ShowScores' method='post'>                                             
+                                        <input type="hidden"  name='usuario' id='search_term3' value=@item.idusuario />  
+                                        <td align="center"><input  type="submit" class="edit" value="Calificaciones"/></td>                        
+                                    </form>*@
+                                    <td align="center">@Html.ActionLink("Autoevaluaciones", "ShowAutoScores", new { idusuario = @item.idusuario })</td>
+                                </tr>
+                            }
+                      </tbody>
+                </table> 
+            </div>          
+          </div>
+     </td>
+    </tr>  
+</table> 
+}
+}
+

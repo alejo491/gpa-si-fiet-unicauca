@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Contáctenos";
+    Layout = "~/Views/Shared/_WorkLayout.cshtml";
+}
+
+@if(Request.IsAuthenticated) {
+    Response.Redirect(Url.Action("Logout","User"));
+}
+
+<h2>Sitios web relacionados</h2>
+<br />
+
+<lu><strong>COMPONENTES DE FORMACIÓN</strong></lu>
+<br /><br />
+<li><a href="http://pfi.unicauca.edu.co/pagina/index.asp" target="_blank">Programa de Formación en Idiomas (PFI)</a></li>
+<li><a href="http://ublogs.unicauca.edu.co/actividad-fisica/" target="_blank">Programa de Actividad Física Formativa (AFF)</a></li>
+<br /><br />
+
+<lu><strong>CONVENIOS</strong></lu>
+<br /><br />
+<li><a href="http://www.unicauca.edu.co/cpepacificoamazonia/" target="_blank">Contrato Unicauca Computadores para Educar Región Pacífico Amazonía</a></li>
+<br /><br />
+
+<lu><strong>DEPENDENCIAS</strong></lu>
+<br /><br />
+<li><a href="http://biblio.unicauca.edu.co/" target="_blank">División de Bibliotecas</a></li>
+<li><a href="http://www.unicauca.edu.co/unisalud/" target="_blank">Unidad de Salud</a></li>
+<li><a href="http://unilingua.unicauca.edu.co/contenidoUnilingua/index.php?leng=esp" target="_blank">Unidad de Servicios en Lenguas Extranjeras (Unilingua)</a></li>
+<li><a href="http://vri.unicauca.edu.co:8081/vri2010/" target="_blank">Vicerrectoría de Investigaciones</a></li>
+<br /><br />
+
+<lu><strong>FACULTADES</strong></lu>
+<br /><br />
+<li><a href=http://www.unicauca.edu.co/faca/ target="_blank">Facultad de Ciencias Agropecuarias</a></li>
+<li><a href="http://fccea.unicauca.edu.co/" target="_blank">Facultad de Ciencias Contables, Económicas y Administrativas</a></li>
+<li><a href="http://facultadsalud.unicauca.edu.co/" target="_blank">Facultad de Ciencias de la Salud</a></li>
+<li><a href="http://humanidades.unicauca.edu.co/" target="_blank">Facultad de Ciencias Humanas y Sociales</a></li>
+<li><a href="http://www.ragnarok.unicauca.edu.co:8080/opencms/opencms/FIETrec/home/recIndex" target="_blank">Facultad de Ingeniería Electrónica y Telecomunicaciones</a></li>
+<br /><br />
+
+<lu><strong>PLATAFORMAS TECNOLÓGICAS EDUCATIVAS</strong></lu>
+<br /><br />
+<li><a href="http://pis.unicauca.edu.co/moodle/" target="_blank">Comunidad Virtual Moodle</a></li>
+<li><a href="http://eva.unicauca.edu.co/" target="_blank"></a>Entorno Virtual de Aprendizaje (EVA)</li>
+<li><a href="http://eva.unicauca.edu.co/" target="_blank">Repositorio Digital de Objetos de Aprendizaje SPAR</a></li>
+<br /><br />
+
+
+

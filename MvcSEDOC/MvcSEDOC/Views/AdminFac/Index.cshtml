@@ -1,0 +1,36 @@
+﻿@model MvcSEDOC.Models.facultad
+@{
+    ViewBag.Title = "Inicio Administrador De La Facultad";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+<h2>Bienvenido al Inicio De Administrador De La Facultad De  @Html.DisplayFor(model => model.fac_nombre)</h2>
+<br />
+El Sistema de Evaluación Docente SEDOC ofrece al Administrador de la Facultad las siguientes funcionalidades: <br /><br />
+<ol>
+    <li><strong>1. Gestionar Privilegios:</strong></li>
+    <li> Asignar jefes de los departamentos de la faculatd de  @Html.DisplayFor(model => model.fac_nombre) de la Universidad del Cauca.</li>
+    <br />
+    <li><strong>2. Consultas:</strong></li>
+    <li> De las autoevaluaciones de las labores asignadas a los docentes del departamento en diferentes periodos académicos.</li>
+    <li> De las materias asignadas a los docentes del departamento en diferentes periodos académicos.</li> 
+    <li> De las evaluaciones y autoevaluaciones de las materias por semestre en diferentes periodos académicos.</li> 
+    <br />
+    <li><strong>3. Gestionar Cuestionarios:</strong></li>
+    <li>Crear, Editar, Eliminar cuestionarios, grupos y preguntas.</li>
+    <li>Asignar y editar los cuestionarios a cada tipo de labor.</li>
+    <br />
+    <li><strong>4. Importar Datos:</strong></li>
+    <li>Importar datos por medio de archivos excel de información obtenida por Sigela y Simca.</li>
+    <li>Importar datos por medio de archivos excel de información externa.</li>
+    <br />
+    <li><strong>5. Evaluar Jefes De Labor:</strong></li>
+    <li>Realizar la evaluación de los jefes asignados a cada labor.</li>
+    <br />
+    <li><strong>6. Configuraciones Básicas:</strong></li> 
+    <li>Realizar la gestión de los periodos académicos</li>
+</ol>

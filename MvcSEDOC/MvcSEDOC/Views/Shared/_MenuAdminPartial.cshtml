@@ -1,0 +1,97 @@
+﻿    @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+     if(! User.IsInRole("Admin"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }
+     }  
+   
+    <div id="accordionMenu" optionselected="@ViewBag.optionmenu">
+        @if (periodoActual != 1)
+        {
+        <h3><a href="#">Gestionar Docentes</a></h3>
+        <div>
+            <p> 
+                <ul>
+                    <li>@Html.ActionLink("Gestionar Privilegios De Docentes", "ListProgramas", "Admin")</li>                   
+                </ul>                              
+            </p>
+	    </div> 
+        }     
+        <h3><a href="#">Consultas</a></h3>
+        <div>
+            <p>                
+                <ul>
+                    <li>@Html.ActionLink("Consultar Labores y Autoevaluaciones", "ListDocente", "Admin")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Consultar Asignaturas y Autoevaluaciones", "ListMateria", "Admin")</li>
+                </ul>                
+            </p>
+	    </div> 
+        @if (periodoActual != 1)
+        {
+        <h3><a href="#">Gestionar Cuestionarios De Evaluación</a></h3>
+        <div>
+            <p>                
+                <ul>
+                    <li>@Html.ActionLink("Crear Tipo De Cuestionario", "CreateQuestionnaire", "Admin")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Tipo De Cuestionario", "UpdateQuestionnaire", "Admin")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Crear Grupo", "CreateGroup", "Admin")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Grupo", "UpdateGroup", "Admin")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Crear Preguntas", "CreateQuestion", "Admin")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Preguntas", "UpdateQuestion", "Admin")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Asignar Cuestionario", "AssignQuestionnaire", "Admin")</li>
+                    <li>@Html.ActionLink("Editar Asignación Cuestionario", "EditarAssignQuestionnaire", "Admin")</li>
+                </ul>
+            </p>
+        </div>
+        
+        <h3><a href="#">Importar Datos</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("SIGELA", "ImportDataSIGELA", "Admin")</li>
+                    <li>@Html.ActionLink("SIMCA", "ImportDataSIMCA", "Admin")</li>
+                    <li>@Html.ActionLink("Coordinadores de comites", "ImportDataC", "Admin")</li>
+                </ul>
+            </p>
+        </div>
+        <h3><a href="#">Evaluar Jefes De Labor</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Evaluar Jefes de Labor", "AssessLaborChief", "Admin")</li>
+                </ul>
+            </p>
+        </div>      
+        <h3><a href="#">Configuraciones básicas</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Gestionar Periodos Académicos", "AcademicPeriods", "Admin")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Cambiar contraseña", "ChangePass", "Admin")</li>               
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Crear Usuarios", "CreateUser", "Admin")</li>               
+                </ul>
+            </p>
+        </div>
+        }
+    </div>

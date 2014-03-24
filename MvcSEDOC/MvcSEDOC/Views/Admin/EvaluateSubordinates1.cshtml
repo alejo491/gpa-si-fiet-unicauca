@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Evaluar Jefes de labor";
+}
+
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+    
+}
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/accordionEvaluteSubordinateReady.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/admin-EvaluateSubordinates2.js")" type="text/javascript"></script>
+}
+
+<h2>Evaluar Docentes a Cargo</h2>
+
+@{
+    List<MvcSEDOC.Models.SubordinatesByWork> listSubBW;
+    listSubBW = (List<MvcSEDOC.Models.SubordinatesByWork>)ViewBag.SubByWork;
+    MvcSEDOC.Models.CompleteQuestionnaire compQuest;
+    compQuest = (MvcSEDOC.Models.CompleteQuestionnaire)ViewBag.CompQuest;
+}
+
+<div id="dialogEvalSubordinate" title="Evaluación de Jefe de Labor">
+    <fieldset>
+        <table>
+            <tr>             
+                <td><div class="editor-label"><strong>Labor Evaluada: @ViewBag.WorkDescription</strong></div></td>
+                <td><div class="editor-field" id="DocName"></div></td>
+            </tr>     
+            <tr>             
+                <td><div class="editor-label"><strong>Docente Evaluado: @ViewBag.SubByWork1</strong></div></td>
+                <td><div class="editor-field" id="DocName"></div></td>
+            </tr>            
+        </table>
+        <table>
+            <div class="field-validation-valid" id="validation-messages"></div>
+            <br />
+            
+            @foreach (MvcSEDOC.Models.QuestionnaireGroup agroup in compQuest.listaGrupos)
+            { 
+                <tr>
+                    <th colspan="2">@agroup.nombre - @agroup.porcentaje %</th>
+                </tr>
+                foreach (MvcSEDOC.Models.Question aquest in agroup.listaPregs)
+                { 
+                    <tr>
+                        <td><div class="editor-label">@aquest.txtPregunta</div></td>
+                        <td><div class="editor-field"><input type="text" class="calif" name="calif@aquest.idPregunta" maxlength="3" size="3" idgrupo="@agroup.idGrupo" idpregunta="@aquest.idPregunta" /></div></td>
+                    </tr>
+                }            
+            }
+
+        </table>
+        <input type="hidden" name="idLaborEvaluar" id="idLaborEvaluar"  value="@(@ViewBag.SubByWork2)" />
+        <input type="hidden" name="idDocenteEvaluado" id="idDocenteEvaluado" value="@(@ViewBag.SubByWork3)" />
+        <input type="hidden" name="idEvaluacion" id="idEvaluacion" value="@(@ViewBag.SubByWork4)" />
+        <input type="hidden" name="idCuestionario" id="idCuestionario" value="@(@ViewBag.SubByWork5)" />
+        
+    </fieldset>
+</div>
+
+
+

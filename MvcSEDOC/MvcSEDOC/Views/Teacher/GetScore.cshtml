@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Consultar Calificación";
+}
+
+
+@section MenuSection
+{
+    @Html.Partial("_MenuTeacherPartial")
+}
+
+<h2>Consultar Calificación</h2>
+@using (Html.BeginForm("GetLaborType","Teacher",FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <table>
+            <tr>
+                <td>
+                    <div>	                    
+                    Tipo de Labor:
+                    </div>                    
+                    <div class="ui-widget">                    
+                        @Html.DropDownList("tipolabor")
+                    </div>
+                 </td>
+                 <td>
+                     <div>	                    
+                        <div class="editor-field"></div>
+                     </div>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="editor-label">
+                        Nombre
+                  </div> 
+                </td>
+                <td colspan="2">
+                    <div class="editor-field">                     
+                    </div>
+                </td>
+            </tr>
+            <tr>
+              <td>
+                 <div class="editor-label">
+                    Porcentaje
+                </div>        
+              </td>
+              <td colspan="2">
+                <div class="editor-field">                   
+                </div>
+              </td>
+            </tr>            
+        </table>       
+        <p>
+            <input type="submit" value="Crear"/>
+        </p>
+    </fieldset>
+}

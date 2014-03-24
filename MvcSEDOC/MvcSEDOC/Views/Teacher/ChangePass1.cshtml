@@ -1,0 +1,130 @@
+﻿@model MvcSEDOC.Models.grupo
+@{
+    ViewBag.Title = "Cambiar contraseña";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuTeacherPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    @*<script src="@Url.Content("~/Scripts/admin-CreateGroup.js")" type="text/javascript"></script>*@
+}
+
+<h2>Cambiar contraseña </h2>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="accepted">@ViewBag.Message</div>
+    <meta http-equiv="Refresh" content="1; url=@Url.Action("ChangePass", "Teacher")" />
+}
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+    
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<form method="post" action="@Url.Action("ChangePass1", "Teacher")">
+    <fieldset>
+        <table>
+            <tr>
+                <td>
+                    <div class="ui-widget">
+	                    <label for="search_term1">Contraseña anterior: </label>
+                    </div>
+                 </td>
+                 <td>
+                     <div>	                    
+                       
+                        @if (!string.IsNullOrEmpty(ViewBag.Error1))
+                        {                            
+                             <input type='password' name='anterior' id='search_term' />   
+                            <span class="asterisco">*</span>  
+                        }
+                        else if (!string.IsNullOrEmpty(ViewBag.Message))
+                        {
+                            <input type='password' name='anterior' id='search_term'  />  
+                        }
+                        else
+                        { 
+                            <input type='password' name='anterior' id='search_term' value=@ViewBag.Value1 />   
+                        }
+                        <div class="editor-field">                             
+                        </div>
+                       
+                     </div>
+                     
+                </td>                
+            </tr>
+            <tr>
+                <td>
+                  <div class="editor-label">
+                        Nueva contraseña
+                  </div> 
+                </td>
+                <td colspan="2">
+                    <div class="editor-field">
+                     
+                      
+                        @if (!string.IsNullOrEmpty(ViewBag.Error2))
+                        {                           
+                              <input type='password' name='nueva' id='search_term' />   
+                             <span class="asterisco">*</span>   
+                        }
+                        else if (!string.IsNullOrEmpty(ViewBag.Message))
+                        { 
+                             <input type='password' name='nueva' id='search_term'  /> 
+                        }
+                        else { 
+                             <input type='password' name='nueva' id='search_term' value=@ViewBag.Value2 />     
+                        }                      
+                    </div>
+                </td>
+            </tr>
+            <tr>
+              <td>
+                 <div class="editor-label">
+                    Repetir contraseña
+                </div>        
+              </td>
+              <td colspan="2">
+                <div class="editor-field">                  
+                   
+                    @if (!string.IsNullOrEmpty(ViewBag.Error3))
+                    {                           
+                        <input type='password'  name='repite' id='search_term' /> 
+                         <span class="asterisco">*</span>
+                    }
+                    else if (!string.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        <input type='password' name='repite' id='search_term' />
+                    }
+                    else { 
+                        <input type='password' name='repite' id='search_term'  value= @ViewBag.Value3  />
+                    }
+                     
+                </div>
+              </td>
+            </tr>
+            
+        </table>       
+
+        <p>
+            
+             @if (!string.IsNullOrEmpty(ViewBag.Message))
+             {
+                  <input type="submit" value="Cambiar" disabled/>
+             }
+             else
+             { 
+                  <input type="submit" value="Cambiar"/>
+             }
+
+
+        </p>
+    </fieldset>
+
+<a class="miga" href="@Url.Action("Index", "Teacher")"> Volver a Inicio </a>

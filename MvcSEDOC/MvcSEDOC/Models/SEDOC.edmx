@@ -1,0 +1,1144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SEDOCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SEDOCModelStoreContainer">
+          <EntitySet Name="adminfacultad" EntityType="SEDOCModel.Store.adminfacultad" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="asignarCuestionario" EntityType="SEDOCModel.Store.asignarCuestionario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="autoevaluacion" EntityType="SEDOCModel.Store.autoevaluacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cuestionario" EntityType="SEDOCModel.Store.cuestionario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="decanoCoordinador" EntityType="SEDOCModel.Store.decanoCoordinador" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="departamento" EntityType="SEDOCModel.Store.departamento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="desarrolloprofesoral" EntityType="SEDOCModel.Store.desarrolloprofesoral" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="dirige" EntityType="SEDOCModel.Store.dirige" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="docencia" EntityType="SEDOCModel.Store.docencia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="docente" EntityType="SEDOCModel.Store.docente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="esjefe" EntityType="SEDOCModel.Store.esjefe" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="evaluacion" EntityType="SEDOCModel.Store.evaluacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="facultad" EntityType="SEDOCModel.Store.facultad" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gestion" EntityType="SEDOCModel.Store.gestion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="grupo" EntityType="SEDOCModel.Store.grupo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="investigacion" EntityType="SEDOCModel.Store.investigacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="labor" EntityType="SEDOCModel.Store.labor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="materia" EntityType="SEDOCModel.Store.materia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="otras" EntityType="SEDOCModel.Store.otras" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="participa" EntityType="SEDOCModel.Store.participa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="periodo_academico" EntityType="SEDOCModel.Store.periodo_academico" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pregunta" EntityType="SEDOCModel.Store.pregunta" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="problema" EntityType="SEDOCModel.Store.problema" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="programa" EntityType="SEDOCModel.Store.programa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="resultado" EntityType="SEDOCModel.Store.resultado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="social" EntityType="SEDOCModel.Store.social" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="trabajodegrado" EntityType="SEDOCModel.Store.trabajodegrado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="trabajodegradoinvestigacion" EntityType="SEDOCModel.Store.trabajodegradoinvestigacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="usuario" EntityType="SEDOCModel.Store.usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_departamento_facultad" Association="SEDOCModel.Store.fk_departamento_facultad">
+            <End Role="facultad" EntitySet="facultad" />
+            <End Role="departamento" EntitySet="departamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_docente_esun_usuario" Association="SEDOCModel.Store.fk_docente_esun_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="docente" EntitySet="docente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_problema_autoevaluacion" Association="SEDOCModel.Store.fk_problema_autoevaluacion">
+            <End Role="autoevaluacion" EntitySet="autoevaluacion" />
+            <End Role="problema" EntitySet="problema" />
+          </AssociationSet>
+          <AssociationSet Name="fk_resultado_autoevaluacion" Association="SEDOCModel.Store.fk_resultado_autoevaluacion">
+            <End Role="autoevaluacion" EntitySet="autoevaluacion" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="adminfacultad">
+          <Key>
+            <PropertyRef Name="idusuario" />
+            <PropertyRef Name="idfacultad" />
+          </Key>
+          <Property Name="idusuario" Type="int" Nullable="false" />
+          <Property Name="idfacultad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="asignarCuestionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idcuestionario" Type="int" Nullable="false" />
+          <Property Name="idlabor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="autoevaluacion">
+          <Key>
+            <PropertyRef Name="idautoevaluacion" />
+          </Key>
+          <Property Name="idautoevaluacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="calificacion" Type="int" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="cuestionario">
+          <Key>
+            <PropertyRef Name="idcuestionario" />
+          </Key>
+          <Property Name="idcuestionario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tipocuestionario" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="decanoCoordinador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idusuario" Type="int" Nullable="false" />
+          <Property Name="idfacultadDepto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="iddepartamento" />
+          </Key>
+          <Property Name="iddepartamento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idfacultad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="desarrolloprofesoral">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="resolucion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nombreactividad" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="semanaslaborales" Type="int" />
+        </EntityType>
+        <EntityType Name="dirige">
+          <Key>
+            <PropertyRef Name="idusuario" />
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idusuario" Type="int" Nullable="false" />
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="idevaluacion" Type="int" />
+          <Property Name="idautoevaluacion" Type="int" />
+          <Property Name="horasSemana" Type="int" />
+        </EntityType>
+        <EntityType Name="docencia">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="grupo" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="idmateria" Type="int" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="semanaslaborales" Type="int" />
+        </EntityType>
+        <EntityType Name="docente">
+          <Key>
+            <PropertyRef Name="iddocente" />
+          </Key>
+          <Property Name="iddocente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="iddepartamento" Type="int" Nullable="false" />
+          <Property Name="idusuario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="esjefe">
+          <Key>
+            <PropertyRef Name="iddocente" />
+            <PropertyRef Name="iddepartamento" />
+            <PropertyRef Name="idperiodo" />
+          </Key>
+          <Property Name="iddocente" Type="int" Nullable="false" />
+          <Property Name="iddepartamento" Type="int" Nullable="false" />
+          <Property Name="idperiodo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evaluacion">
+          <Key>
+            <PropertyRef Name="idevaluacion" />
+          </Key>
+          <Property Name="idevaluacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="evaluacionestudiante" Type="int" />
+          <Property Name="evaluacionjefe" Type="int" />
+          <Property Name="evaluacionautoevaluacion" Type="int" />
+          <Property Name="observaciones" Type="ntext" />
+        </EntityType>
+        <EntityType Name="facultad">
+          <Key>
+            <PropertyRef Name="idfacultad" />
+          </Key>
+          <Property Name="idfacultad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fac_nombre" Type="varchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="gestion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="nombrecargo" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="unidad" Type="varchar" MaxLength="50" />
+          <Property Name="semanaslaborales" Type="int" />
+        </EntityType>
+        <EntityType Name="grupo">
+          <Key>
+            <PropertyRef Name="idgrupo" />
+          </Key>
+          <Property Name="idgrupo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idcuestionario" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="porcentaje" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="investigacion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="codigovri" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="nombreproyecto" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="fechainicio" Type="datetime" />
+          <Property Name="fechafin" Type="datetime" />
+          <Property Name="semanaslaborales" Type="int" />
+        </EntityType>
+        <EntityType Name="labor">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idperiodo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="idmateria" />
+          </Key>
+          <Property Name="idmateria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="codigomateria" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="nombremateria" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="grupo" Type="varchar" MaxLength="20" />
+          <Property Name="creditos" Type="int" />
+          <Property Name="semestre" Type="int" />
+          <Property Name="intensidadhoraria" Type="int" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" />
+          <Property Name="idprograma" Type="int" />
+        </EntityType>
+        <EntityType Name="otras">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+        </EntityType>
+        <EntityType Name="participa">
+          <Key>
+            <PropertyRef Name="iddocente" />
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="iddocente" Type="int" Nullable="false" />
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="idevaluacion" Type="int" />
+          <Property Name="idautoevaluacion" Type="int" />
+        </EntityType>
+        <EntityType Name="periodo_academico">
+          <Key>
+            <PropertyRef Name="idperiodo" />
+          </Key>
+          <Property Name="idperiodo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="anio" Type="int" />
+          <Property Name="numeroperiodo" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+        </EntityType>
+        <EntityType Name="pregunta">
+          <Key>
+            <PropertyRef Name="idpregunta" />
+          </Key>
+          <Property Name="idpregunta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idgrupo" Type="int" Nullable="false" />
+          <Property Name="pregunta" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="problema">
+          <Key>
+            <PropertyRef Name="idproblema" />
+          </Key>
+          <Property Name="idproblema" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idautoevaluacion" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="ntext" />
+          <Property Name="solucion" Type="ntext" />
+        </EntityType>
+        <EntityType Name="programa">
+          <Key>
+            <PropertyRef Name="idprograma" />
+          </Key>
+          <Property Name="idprograma" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombreprograma" Type="varchar" Nullable="false" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="resultado">
+          <Key>
+            <PropertyRef Name="idresultado" />
+          </Key>
+          <Property Name="idresultado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idautoevaluacion" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="ntext" />
+          <Property Name="ubicacion" Type="ntext" />
+        </EntityType>
+        <EntityType Name="social">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="resolucion" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="nombreproyecto" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="unidad" Type="varchar" MaxLength="50" />
+          <Property Name="fechainicio" Type="datetime" />
+          <Property Name="fechafin" Type="datetime" />
+          <Property Name="semanaslaborales" Type="int" />
+        </EntityType>
+        <EntityType Name="trabajodegrado">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="resolucion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="titulotrabajo" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="idprograma" Type="int" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="semanaslaborales" Type="int" />
+          <Property Name="fechainicio" Type="datetime" />
+          <Property Name="fechafin" Type="datetime" />
+          <Property Name="codigoest" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trabajodegradoinvestigacion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="int" Nullable="false" />
+          <Property Name="titulotrabajo" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="idprograma" Type="int" />
+          <Property Name="horassemana" Type="decimal" Scale="2" />
+          <Property Name="semanaslaborales" Type="int" />
+          <Property Name="codigoest" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="emailinstitucional" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="rol" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="nombres" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="apellidos" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="identificacion" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <Association Name="fk_departamento_facultad">
+          <End Role="facultad" Type="SEDOCModel.Store.facultad" Multiplicity="1" />
+          <End Role="departamento" Type="SEDOCModel.Store.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultad">
+              <PropertyRef Name="idfacultad" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idfacultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_docente_esun_usuario">
+          <End Role="usuario" Type="SEDOCModel.Store.usuario" Multiplicity="1" />
+          <End Role="docente" Type="SEDOCModel.Store.docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idusuario" />
+            </Principal>
+            <Dependent Role="docente">
+              <PropertyRef Name="idusuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_problema_autoevaluacion">
+          <End Role="autoevaluacion" Type="SEDOCModel.Store.autoevaluacion" Multiplicity="1" />
+          <End Role="problema" Type="SEDOCModel.Store.problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autoevaluacion">
+              <PropertyRef Name="idautoevaluacion" />
+            </Principal>
+            <Dependent Role="problema">
+              <PropertyRef Name="idautoevaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_resultado_autoevaluacion">
+          <End Role="autoevaluacion" Type="SEDOCModel.Store.autoevaluacion" Multiplicity="1" />
+          <End Role="resultado" Type="SEDOCModel.Store.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autoevaluacion">
+              <PropertyRef Name="idautoevaluacion" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="idautoevaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SEDOCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SEDOCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adminfacultad" EntityType="SEDOCModel.adminfacultad" />
+          <EntitySet Name="asignarCuestionario" EntityType="SEDOCModel.asignarCuestionario" />
+          <EntitySet Name="autoevaluacion" EntityType="SEDOCModel.autoevaluacion" />
+          <EntitySet Name="cuestionario" EntityType="SEDOCModel.cuestionario" />
+          <EntitySet Name="decanoCoordinador" EntityType="SEDOCModel.decanoCoordinador" />
+          <EntitySet Name="departamento" EntityType="SEDOCModel.departamento" />
+          <EntitySet Name="desarrolloprofesoral" EntityType="SEDOCModel.desarrolloprofesoral" />
+          <EntitySet Name="dirige" EntityType="SEDOCModel.dirige" />
+          <EntitySet Name="docencia" EntityType="SEDOCModel.docencia" />
+          <EntitySet Name="docente" EntityType="SEDOCModel.docente" />
+          <EntitySet Name="esjefe" EntityType="SEDOCModel.esjefe" />
+          <EntitySet Name="evaluacion" EntityType="SEDOCModel.evaluacion" />
+          <EntitySet Name="facultad" EntityType="SEDOCModel.facultad" />
+          <EntitySet Name="gestion" EntityType="SEDOCModel.gestion" />
+          <EntitySet Name="grupo" EntityType="SEDOCModel.grupo" />
+          <EntitySet Name="investigacion" EntityType="SEDOCModel.investigacion" />
+          <EntitySet Name="labor" EntityType="SEDOCModel.labor" />
+          <EntitySet Name="materia" EntityType="SEDOCModel.materia" />
+          <EntitySet Name="otras" EntityType="SEDOCModel.otras" />
+          <EntitySet Name="participa" EntityType="SEDOCModel.participa" />
+          <EntitySet Name="periodo_academico" EntityType="SEDOCModel.periodo_academico" />
+          <EntitySet Name="pregunta" EntityType="SEDOCModel.pregunta" />
+          <EntitySet Name="problema" EntityType="SEDOCModel.problema" />
+          <EntitySet Name="programa" EntityType="SEDOCModel.programa" />
+          <EntitySet Name="resultado" EntityType="SEDOCModel.resultado" />
+          <EntitySet Name="social" EntityType="SEDOCModel.social" />
+          <EntitySet Name="trabajodegrado" EntityType="SEDOCModel.trabajodegrado" />
+          <EntitySet Name="trabajodegradoinvestigacion" EntityType="SEDOCModel.trabajodegradoinvestigacion" />
+          <EntitySet Name="usuario" EntityType="SEDOCModel.usuario" />
+          <AssociationSet Name="fk_problema_autoevaluacion" Association="SEDOCModel.fk_problema_autoevaluacion">
+            <End Role="autoevaluacion" EntitySet="autoevaluacion" />
+            <End Role="problema" EntitySet="problema" />
+          </AssociationSet>
+          <AssociationSet Name="fk_resultado_autoevaluacion" Association="SEDOCModel.fk_resultado_autoevaluacion">
+            <End Role="autoevaluacion" EntitySet="autoevaluacion" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_departamento_facultad" Association="SEDOCModel.fk_departamento_facultad">
+            <End Role="facultad" EntitySet="facultad" />
+            <End Role="departamento" EntitySet="departamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_docente_esun_usuario" Association="SEDOCModel.fk_docente_esun_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="docente" EntitySet="docente" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="adminfacultad">
+          <Key>
+            <PropertyRef Name="idusuario" />
+            <PropertyRef Name="idfacultad" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" />
+          <Property Name="idfacultad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="asignarCuestionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcuestionario" Type="Int32" Nullable="false" />
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="autoevaluacion">
+          <Key>
+            <PropertyRef Name="idautoevaluacion" />
+          </Key>
+          <Property Name="idautoevaluacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calificacion" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" />
+          <NavigationProperty Name="problema" Relationship="SEDOCModel.fk_problema_autoevaluacion" FromRole="autoevaluacion" ToRole="problema" />
+          <NavigationProperty Name="resultado" Relationship="SEDOCModel.fk_resultado_autoevaluacion" FromRole="autoevaluacion" ToRole="resultado" />
+        </EntityType>
+        <EntityType Name="cuestionario">
+          <Key>
+            <PropertyRef Name="idcuestionario" />
+          </Key>
+          <Property Name="idcuestionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipocuestionario" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="decanoCoordinador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idusuario" Type="Int32" Nullable="false" />
+          <Property Name="idfacultadDepto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="iddepartamento" />
+          </Key>
+          <Property Name="iddepartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idfacultad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="facultad" Relationship="SEDOCModel.fk_departamento_facultad" FromRole="departamento" ToRole="facultad" />
+        </EntityType>
+        <EntityType Name="desarrolloprofesoral">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="resolucion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nombreactividad" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="semanaslaborales" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dirige">
+          <Key>
+            <PropertyRef Name="idusuario" />
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" />
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="idevaluacion" Type="Int32" />
+          <Property Name="idautoevaluacion" Type="Int32" />
+          <Property Name="horasSemana" Type="Int32" />
+        </EntityType>
+        <EntityType Name="docencia">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="grupo" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="idmateria" Type="Int32" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="semanaslaborales" Type="Int32" />
+        </EntityType>
+        <EntityType Name="docente">
+          <Key>
+            <PropertyRef Name="iddocente" />
+          </Key>
+          <Property Name="iddocente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iddepartamento" Type="Int32" Nullable="false" />
+          <Property Name="idusuario" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="8" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="usuario" Relationship="SEDOCModel.fk_docente_esun_usuario" FromRole="docente" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="esjefe">
+          <Key>
+            <PropertyRef Name="iddocente" />
+            <PropertyRef Name="iddepartamento" />
+            <PropertyRef Name="idperiodo" />
+          </Key>
+          <Property Name="iddocente" Type="Int32" Nullable="false" />
+          <Property Name="iddepartamento" Type="Int32" Nullable="false" />
+          <Property Name="idperiodo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evaluacion">
+          <Key>
+            <PropertyRef Name="idevaluacion" />
+          </Key>
+          <Property Name="idevaluacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="evaluacionestudiante" Type="Int32" />
+          <Property Name="evaluacionjefe" Type="Int32" />
+          <Property Name="evaluacionautoevaluacion" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="facultad">
+          <Key>
+            <PropertyRef Name="idfacultad" />
+          </Key>
+          <Property Name="idfacultad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fac_nombre" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="departamento" Relationship="SEDOCModel.fk_departamento_facultad" FromRole="facultad" ToRole="departamento" />
+        </EntityType>
+        <EntityType Name="gestion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="nombrecargo" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="unidad" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="semanaslaborales" Type="Int32" />
+        </EntityType>
+        <EntityType Name="grupo">
+          <Key>
+            <PropertyRef Name="idgrupo" />
+          </Key>
+          <Property Name="idgrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcuestionario" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <Property Name="porcentaje" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="investigacion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="codigovri" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="nombreproyecto" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fechainicio" Type="DateTime" />
+          <Property Name="fechafin" Type="DateTime" />
+          <Property Name="semanaslaborales" Type="Int32" />
+        </EntityType>
+        <EntityType Name="labor">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idperiodo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="idmateria" />
+          </Key>
+          <Property Name="idmateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigomateria" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="nombremateria" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="grupo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="creditos" Type="Int32" />
+          <Property Name="semestre" Type="Int32" />
+          <Property Name="intensidadhoraria" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="idprograma" Type="Int32" />
+        </EntityType>
+        <EntityType Name="otras">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="participa">
+          <Key>
+            <PropertyRef Name="iddocente" />
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="iddocente" Type="Int32" Nullable="false" />
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="idevaluacion" Type="Int32" />
+          <Property Name="idautoevaluacion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="periodo_academico">
+          <Key>
+            <PropertyRef Name="idperiodo" />
+          </Key>
+          <Property Name="idperiodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anio" Type="Int32" />
+          <Property Name="numeroperiodo" Type="Int32" />
+          <Property Name="fecha_inicio" Type="DateTime" />
+          <Property Name="fecha_fin" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="pregunta">
+          <Key>
+            <PropertyRef Name="idpregunta" />
+          </Key>
+          <Property Name="idpregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idgrupo" Type="Int32" Nullable="false" />
+          <Property Name="pregunta1" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="problema">
+          <Key>
+            <PropertyRef Name="idproblema" />
+          </Key>
+          <Property Name="idproblema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idautoevaluacion" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="solucion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="autoevaluacion" Relationship="SEDOCModel.fk_problema_autoevaluacion" FromRole="problema" ToRole="autoevaluacion" />
+        </EntityType>
+        <EntityType Name="programa">
+          <Key>
+            <PropertyRef Name="idprograma" />
+          </Key>
+          <Property Name="idprograma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreprograma" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="resultado">
+          <Key>
+            <PropertyRef Name="idresultado" />
+          </Key>
+          <Property Name="idresultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idautoevaluacion" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="autoevaluacion" Relationship="SEDOCModel.fk_resultado_autoevaluacion" FromRole="resultado" ToRole="autoevaluacion" />
+        </EntityType>
+        <EntityType Name="social">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="resolucion" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="nombreproyecto" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="unidad" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="fechainicio" Type="DateTime" />
+          <Property Name="fechafin" Type="DateTime" />
+          <Property Name="semanaslaborales" Type="Int32" />
+        </EntityType>
+        <EntityType Name="trabajodegrado">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="resolucion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="titulotrabajo" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="idprograma" Type="Int32" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="semanaslaborales" Type="Int32" />
+          <Property Name="fechainicio" Type="DateTime" />
+          <Property Name="fechafin" Type="DateTime" />
+          <Property Name="codigoest" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trabajodegradoinvestigacion">
+          <Key>
+            <PropertyRef Name="idlabor" />
+          </Key>
+          <Property Name="idlabor" Type="Int32" Nullable="false" />
+          <Property Name="titulotrabajo" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="idprograma" Type="Int32" />
+          <Property Name="horassemana" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="semanaslaborales" Type="Int32" />
+          <Property Name="codigoest" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emailinstitucional" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="rol" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="docente" Relationship="SEDOCModel.fk_docente_esun_usuario" FromRole="usuario" ToRole="docente" />
+        </EntityType>
+        <Association Name="fk_problema_autoevaluacion">
+          <End Role="autoevaluacion" Type="SEDOCModel.autoevaluacion" Multiplicity="1" />
+          <End Role="problema" Type="SEDOCModel.problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autoevaluacion">
+              <PropertyRef Name="idautoevaluacion" />
+            </Principal>
+            <Dependent Role="problema">
+              <PropertyRef Name="idautoevaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_resultado_autoevaluacion">
+          <End Role="autoevaluacion" Type="SEDOCModel.autoevaluacion" Multiplicity="1" />
+          <End Role="resultado" Type="SEDOCModel.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autoevaluacion">
+              <PropertyRef Name="idautoevaluacion" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="idautoevaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_departamento_facultad">
+          <End Role="facultad" Type="SEDOCModel.facultad" Multiplicity="1" />
+          <End Role="departamento" Type="SEDOCModel.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultad">
+              <PropertyRef Name="idfacultad" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idfacultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_docente_esun_usuario">
+          <End Role="usuario" Type="SEDOCModel.usuario" Multiplicity="1" />
+          <End Role="docente" Type="SEDOCModel.docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idusuario" />
+            </Principal>
+            <Dependent Role="docente">
+              <PropertyRef Name="idusuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SEDOCModelStoreContainer" CdmEntityContainer="SEDOCEntities">
+          <EntitySetMapping Name="adminfacultad">
+            <EntityTypeMapping TypeName="SEDOCModel.adminfacultad">
+              <MappingFragment StoreEntitySet="adminfacultad">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idfacultad" ColumnName="idfacultad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asignarCuestionario">
+            <EntityTypeMapping TypeName="SEDOCModel.asignarCuestionario">
+              <MappingFragment StoreEntitySet="asignarCuestionario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idcuestionario" ColumnName="idcuestionario" />
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="autoevaluacion">
+            <EntityTypeMapping TypeName="SEDOCModel.autoevaluacion">
+              <MappingFragment StoreEntitySet="autoevaluacion">
+                <ScalarProperty Name="idautoevaluacion" ColumnName="idautoevaluacion" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuestionario">
+            <EntityTypeMapping TypeName="SEDOCModel.cuestionario">
+              <MappingFragment StoreEntitySet="cuestionario">
+                <ScalarProperty Name="idcuestionario" ColumnName="idcuestionario" />
+                <ScalarProperty Name="tipocuestionario" ColumnName="tipocuestionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="decanoCoordinador">
+            <EntityTypeMapping TypeName="SEDOCModel.decanoCoordinador">
+              <MappingFragment StoreEntitySet="decanoCoordinador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idfacultadDepto" ColumnName="idfacultadDepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamento">
+            <EntityTypeMapping TypeName="SEDOCModel.departamento">
+              <MappingFragment StoreEntitySet="departamento">
+                <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+                <ScalarProperty Name="idfacultad" ColumnName="idfacultad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="desarrolloprofesoral">
+            <EntityTypeMapping TypeName="SEDOCModel.desarrolloprofesoral">
+              <MappingFragment StoreEntitySet="desarrolloprofesoral">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="resolucion" ColumnName="resolucion" />
+                <ScalarProperty Name="nombreactividad" ColumnName="nombreactividad" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dirige">
+            <EntityTypeMapping TypeName="SEDOCModel.dirige">
+              <MappingFragment StoreEntitySet="dirige">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="idevaluacion" ColumnName="idevaluacion" />
+                <ScalarProperty Name="idautoevaluacion" ColumnName="idautoevaluacion" />
+                <ScalarProperty Name="horasSemana" ColumnName="horasSemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="docencia">
+            <EntityTypeMapping TypeName="SEDOCModel.docencia">
+              <MappingFragment StoreEntitySet="docencia">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+                <ScalarProperty Name="idmateria" ColumnName="idmateria" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="docente">
+            <EntityTypeMapping TypeName="SEDOCModel.docente">
+              <MappingFragment StoreEntitySet="docente">
+                <ScalarProperty Name="iddocente" ColumnName="iddocente" />
+                <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="esjefe">
+            <EntityTypeMapping TypeName="SEDOCModel.esjefe">
+              <MappingFragment StoreEntitySet="esjefe">
+                <ScalarProperty Name="iddocente" ColumnName="iddocente" />
+                <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+                <ScalarProperty Name="idperiodo" ColumnName="idperiodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evaluacion">
+            <EntityTypeMapping TypeName="SEDOCModel.evaluacion">
+              <MappingFragment StoreEntitySet="evaluacion">
+                <ScalarProperty Name="idevaluacion" ColumnName="idevaluacion" />
+                <ScalarProperty Name="evaluacionestudiante" ColumnName="evaluacionestudiante" />
+                <ScalarProperty Name="evaluacionjefe" ColumnName="evaluacionjefe" />
+                <ScalarProperty Name="evaluacionautoevaluacion" ColumnName="evaluacionautoevaluacion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facultad">
+            <EntityTypeMapping TypeName="SEDOCModel.facultad">
+              <MappingFragment StoreEntitySet="facultad">
+                <ScalarProperty Name="idfacultad" ColumnName="idfacultad" />
+                <ScalarProperty Name="fac_nombre" ColumnName="fac_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gestion">
+            <EntityTypeMapping TypeName="SEDOCModel.gestion">
+              <MappingFragment StoreEntitySet="gestion">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="nombrecargo" ColumnName="nombrecargo" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupo">
+            <EntityTypeMapping TypeName="SEDOCModel.grupo">
+              <MappingFragment StoreEntitySet="grupo">
+                <ScalarProperty Name="idgrupo" ColumnName="idgrupo" />
+                <ScalarProperty Name="idcuestionario" ColumnName="idcuestionario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="investigacion">
+            <EntityTypeMapping TypeName="SEDOCModel.investigacion">
+              <MappingFragment StoreEntitySet="investigacion">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="codigovri" ColumnName="codigovri" />
+                <ScalarProperty Name="nombreproyecto" ColumnName="nombreproyecto" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+                <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="labor">
+            <EntityTypeMapping TypeName="SEDOCModel.labor">
+              <MappingFragment StoreEntitySet="labor">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="idperiodo" ColumnName="idperiodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materia">
+            <EntityTypeMapping TypeName="SEDOCModel.materia">
+              <MappingFragment StoreEntitySet="materia">
+                <ScalarProperty Name="idmateria" ColumnName="idmateria" />
+                <ScalarProperty Name="codigomateria" ColumnName="codigomateria" />
+                <ScalarProperty Name="nombremateria" ColumnName="nombremateria" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+                <ScalarProperty Name="creditos" ColumnName="creditos" />
+                <ScalarProperty Name="semestre" ColumnName="semestre" />
+                <ScalarProperty Name="intensidadhoraria" ColumnName="intensidadhoraria" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="otras">
+            <EntityTypeMapping TypeName="SEDOCModel.otras">
+              <MappingFragment StoreEntitySet="otras">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="participa">
+            <EntityTypeMapping TypeName="SEDOCModel.participa">
+              <MappingFragment StoreEntitySet="participa">
+                <ScalarProperty Name="iddocente" ColumnName="iddocente" />
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="idevaluacion" ColumnName="idevaluacion" />
+                <ScalarProperty Name="idautoevaluacion" ColumnName="idautoevaluacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="periodo_academico">
+            <EntityTypeMapping TypeName="SEDOCModel.periodo_academico">
+              <MappingFragment StoreEntitySet="periodo_academico">
+                <ScalarProperty Name="idperiodo" ColumnName="idperiodo" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="numeroperiodo" ColumnName="numeroperiodo" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pregunta">
+            <EntityTypeMapping TypeName="SEDOCModel.pregunta">
+              <MappingFragment StoreEntitySet="pregunta">
+                <ScalarProperty Name="idpregunta" ColumnName="idpregunta" />
+                <ScalarProperty Name="idgrupo" ColumnName="idgrupo" />
+                <ScalarProperty Name="pregunta1" ColumnName="pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="problema">
+            <EntityTypeMapping TypeName="SEDOCModel.problema">
+              <MappingFragment StoreEntitySet="problema">
+                <ScalarProperty Name="idproblema" ColumnName="idproblema" />
+                <ScalarProperty Name="idautoevaluacion" ColumnName="idautoevaluacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="solucion" ColumnName="solucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programa">
+            <EntityTypeMapping TypeName="SEDOCModel.programa">
+              <MappingFragment StoreEntitySet="programa">
+                <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+                <ScalarProperty Name="nombreprograma" ColumnName="nombreprograma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resultado">
+            <EntityTypeMapping TypeName="SEDOCModel.resultado">
+              <MappingFragment StoreEntitySet="resultado">
+                <ScalarProperty Name="idresultado" ColumnName="idresultado" />
+                <ScalarProperty Name="idautoevaluacion" ColumnName="idautoevaluacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="social">
+            <EntityTypeMapping TypeName="SEDOCModel.social">
+              <MappingFragment StoreEntitySet="social">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="resolucion" ColumnName="resolucion" />
+                <ScalarProperty Name="nombreproyecto" ColumnName="nombreproyecto" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+                <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+                <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajodegrado">
+            <EntityTypeMapping TypeName="SEDOCModel.trabajodegrado">
+              <MappingFragment StoreEntitySet="trabajodegrado">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="resolucion" ColumnName="resolucion" />
+                <ScalarProperty Name="titulotrabajo" ColumnName="titulotrabajo" />
+                <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+                <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+                <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+                <ScalarProperty Name="codigoest" ColumnName="codigoest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajodegradoinvestigacion">
+            <EntityTypeMapping TypeName="SEDOCModel.trabajodegradoinvestigacion">
+              <MappingFragment StoreEntitySet="trabajodegradoinvestigacion">
+                <ScalarProperty Name="idlabor" ColumnName="idlabor" />
+                <ScalarProperty Name="titulotrabajo" ColumnName="titulotrabajo" />
+                <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+                <ScalarProperty Name="horassemana" ColumnName="horassemana" />
+                <ScalarProperty Name="semanaslaborales" ColumnName="semanaslaborales" />
+                <ScalarProperty Name="codigoest" ColumnName="codigoest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="SEDOCModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="emailinstitucional" ColumnName="emailinstitucional" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SEDOC">
+        <EntityTypeShape EntityType="SEDOCModel.adminfacultad" Width="1.5" PointX="0.75" PointY="6.75" Height="1.4033821614583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.asignarCuestionario" Width="1.5" PointX="2.75" PointY="6.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.autoevaluacion" Width="1.5" PointX="0.75" PointY="2.375" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.cuestionario" Width="1.5" PointX="4.75" PointY="7.75" Height="1.4033821614583326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.decanoCoordinador" Width="1.5" PointX="6.75" PointY="7.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.departamento" Width="1.5" PointX="8" PointY="4.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.desarrolloprofesoral" Width="1.5" PointX="8.75" PointY="7.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.dirige" Width="1.5" PointX="0.75" PointY="9.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.docencia" Width="1.5" PointX="10.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.docente" Width="1.5" PointX="8" PointY="1.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.esjefe" Width="1.5" PointX="2.75" PointY="10.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.evaluacion" Width="1.5" PointX="10.75" PointY="3.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.facultad" Width="1.5" PointX="5.75" PointY="5" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.gestion" Width="1.5" PointX="4.75" PointY="10.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.grupo" Width="1.5" PointX="10.75" PointY="6.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.investigacion" Width="1.5" PointX="6.75" PointY="10.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.labor" Width="1.5" PointX="8.75" PointY="10.75" Height="1.4033821614583388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.materia" Width="1.5" PointX="10.75" PointY="9.75" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.otras" Width="1.5" PointX="12.75" PointY="0.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.participa" Width="1.5" PointX="12.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.periodo_academico" Width="1.5" PointX="12.75" PointY="6.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.pregunta" Width="1.5" PointX="12.75" PointY="9.75" Height="1.5956835937500067" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.problema" Width="1.5" PointX="3" PointY="1" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.programa" Width="1.5" PointX="12.75" PointY="12.75" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.resultado" Width="1.5" PointX="3" PointY="3.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.social" Width="1.5" PointX="0.75" PointY="13.75" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.trabajodegrado" Width="1.5" PointX="2.75" PointY="13.75" Height="2.7494921875000102" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.trabajodegradoinvestigacion" Width="1.5" PointX="8.75" PointY="13.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDOCModel.usuario" Width="1.5" PointX="5.75" PointY="1" Height="2.5571907552083246" IsExpanded="true" />
+        <AssociationConnector Association="SEDOCModel.fk_problema_autoevaluacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.6776432291666623" />
+          <ConnectorPoint PointX="3" PointY="2.6776432291666623" />
+        </AssociationConnector>
+        <AssociationConnector Association="SEDOCModel.fk_resultado_autoevaluacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.0526432291666659" />
+          <ConnectorPoint PointX="3" PointY="4.0526432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SEDOCModel.fk_departamento_facultad" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="5.7978417968750016" />
+          <ConnectorPoint PointX="8" PointY="5.7978417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="SEDOCModel.fk_docente_esun_usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.2401432291666659" />
+          <ConnectorPoint PointX="8" PointY="2.2401432291666659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

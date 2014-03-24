@@ -1,0 +1,83 @@
+﻿@model MvcSEDOC.Models.pregunta
+
+           
+@{
+    ViewBag.Title = "Crear Preguntas";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/adminfac-CreateQuestion.js")" type="text/javascript"></script>
+}
+
+
+
+
+<h2>Crear Preguntas</h2>
+
+<table style="width:100%">
+    <tr>
+        <td>
+            <div class="ui-widget">
+                <div style="padding:3px;" class="ui-widget-content">
+                    <table>
+                        <tr>
+                            <td><label for="search_term">Buscar Tipo de Cuestionario: </label></td>
+                            <td><input id="search_term" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="selected_questionnaire_txt">Tipo de Cuestionario Seleccionado: </label></td>
+                            <td><input type="text" value="" readonly="readonly" id="selected_questionnaire_txt" disabled="disabled" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="ui-widget">
+	            <strong>Grupos de Preguntas</strong>
+	            <div id="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+<div id="dialogCreateQuestion" title="Crear Pregunta">
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+ 
+        <fieldset>
+            <table>
+                <tr>
+                    <td><div class="editor-label"><strong>Cuestionario:</strong></div></td>
+                    <td><div class="editor-field" id="QuestName"></div></td>
+                </tr>
+                <tr>
+                    <td><div class="editor-label"><strong>Grupo:</strong></div></td>
+                    <td><div class="editor-field" id="GroupName"></div></td>
+                </tr>
+            </table>
+            <div class="editor-label">
+                Ingrese la pregunta:
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.pregunta1, new { Style = "width:100%; min-height: 85px;" })
+                @Html.ValidationMessageFor(model => model.pregunta1)
+                @Html.HiddenFor(model=> model.idgrupo)
+            </div>
+        </fieldset>
+    }
+ 
+</div>
+
+<a class="miga" href="@Url.Action("Index","AdminFac")"> Volver a Inicio </a>

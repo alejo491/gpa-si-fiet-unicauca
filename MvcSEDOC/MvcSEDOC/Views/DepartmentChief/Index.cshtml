@@ -1,0 +1,25 @@
+﻿@model MvcSEDOC.Models.departamento
+@{
+    ViewBag.Title = "Inicio Jefe de Departamento";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+   
+<h2>Bienvenido Al Inicio De El Jefe De Departamento De  @Html.DisplayFor(model => model.nombre) </h2>
+
+<br />
+El Sistema de Evaluación Docente SEDOC ofrece al Jefe de Departamento las siguientes funcionalidades: <br /><br />
+<ol>
+    <li><strong>1. Gestionar Privilegios:</strong> Asignar a cada docente del departamento un jefe en cada una de las labores que realiza.</li>
+    <br />
+    <li><strong>2. Generar Consultas:</strong></li> 
+    <li> De las calificaciones obtenidas por los docentes del departamento.</li>
+    <li> De los problemas presentados en las diferentes labores del departamento.</li>   
+    <br />
+    <li><strong>3. Generar Reportes:</strong></li>
+    <li>De las calificaciones docentes y exportarlo a un documento en formato Excel.</li>
+    <li>De las autoevaluaciones docentes y exportarlo a un documento en formato Excel.</li>
+</ol>

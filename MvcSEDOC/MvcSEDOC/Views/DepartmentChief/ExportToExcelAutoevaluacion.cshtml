@@ -1,0 +1,99 @@
+﻿@model MvcSEDOC.Models.SpreadsheetModelAE
+           
+@{
+    ViewBag.Title = "ExportToExcel";
+}
+@{
+    Layout = null;
+    Response.ContentType = "application/vnd.ms-excel";
+    Response.AddHeader("Content-Disposition", "attachment; filename=" + Model.fileName);
+    //Content-Disposition is defined in RFC-2183
+}
+<?xml version="1.0" encoding="utf-16"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+
+    <ss:Worksheet ss:Name="Autoevaluaciones">
+        <ss:Table>
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Column ss:Width = "100" />
+        <ss:Row>
+            <ss:Cell>
+            </ss:Cell>
+            <ss:Cell>
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B><h1>Reporte de autoevaluaciones docentes</h1></B></ss:Data>
+            </ss:Cell>
+        </ss:Row>
+        <ss:Row></ss:Row>
+        <ss:Row>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40" ><B>Fecha De Consulta: </B></ss:Data>
+            </ss:Cell>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.fechaevaluacion</ss:Data>
+            </ss:Cell>
+        </ss:Row>
+        <ss:Row>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Periodo acémico: </B></ss:Data>
+            </ss:Cell>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.periodo</ss:Data>
+            </ss:Cell>
+        </ss:Row>
+        <ss:Row>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>Nombre Del Jefe: </B></ss:Data>
+            </ss:Cell>
+            <ss:Cell >
+            <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">@Model.nombrejefe</ss:Data>
+            </ss:Cell>
+        </ss:Row>
+        <ss:Row>
+        </ss:Row>
+        @for (int i = 0; i < Model.labores.GetLength(0); ++i)
+        {
+            <ss:Row>
+            @for (int j = 0; j < Model.labores.GetLength(1); ++j)
+            {
+
+                if (i==0)
+                {
+                      <ss:Cell>   
+                      <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><B>@Model.labores[i, j]</B></ss:Data>
+                      </ss:Cell>
+                }
+                else
+                {
+                    if (j==5)
+                    {
+                         if (Model.labores[i, j] == "-1")
+                         { 
+                            <ss:Cell>   
+                                <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">NC</ss:Data>
+                            </ss:Cell>
+                         }
+                         else
+                         {
+                            <ss:Cell>
+                             <ss:Data ss:Type="Number">@Model.labores[i, j]</ss:Data>
+                            </ss:Cell>
+                         }                                              
+                    }
+                    else
+                    {
+                    <ss:Cell>
+                      <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><I>@Model.labores[i, j]</I></ss:Data>
+                    </ss:Cell>
+                    }
+                }
+            }
+            </ss:Row>
+        }
+        </ss:Table>
+    </ss:Worksheet>
+</ss:Workbook>

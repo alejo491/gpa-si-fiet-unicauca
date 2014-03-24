@@ -1,0 +1,47 @@
+﻿@model MvcSEDOC.Models.pregunta
+
+@{
+    ViewBag.Title = "Editar Pregunta";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+<h2>Modificar Preguntas</h2>
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+       
+
+        @Html.HiddenFor(model => model.idpregunta)
+        
+        @Html.HiddenFor(model => model.idgrupo)
+        
+        
+
+        <div class="editor-label">
+            Pregunta
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pregunta1)
+            @Html.ValidationMessageFor(model => model.pregunta1)
+        </div>
+
+        <p>
+            <input type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+<p><br /></p>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+<a class="miga" href="@Url.Action("Index","Admin")"> Volver a Inicio </a>

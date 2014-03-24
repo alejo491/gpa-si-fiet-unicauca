@@ -1,0 +1,93 @@
+﻿ @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+     if(! User.IsInRole("AdminFac"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }
+}    
+    <div id="accordionMenu" optionselected="@ViewBag.optionmenu">
+        @if (periodoActual != 1)
+        {
+        <h3><a href="#">Gestionar Docentes</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Asignar Administrador De Facultad ", "SetAdminFac", "AdminFac")</li>                   
+                </ul>
+                  <hr/>   
+                <ul>
+                    <li>@Html.ActionLink("Asignar Jefe de Departamento", "SetPrivileges", "AdminFac")</li>                   
+                </ul>                              
+            </p>
+	    </div> 
+        }
+        <h3><a href="#">Consultas</a></h3>
+        <div>
+            <p>                
+                <ul>
+                    <li>@Html.ActionLink("Consultar Labores y Autoevaluaciones", "ListDocente", "AdminFac")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Consultar Asignaturas y Autoevaluaciones", "ListMateria", "AdminFac")</li>
+                </ul>                
+            </p>
+	    </div> 
+        @if (periodoActual != 1)
+        {
+        <h3><a href="#">Gestionar Cuestionarios De Evaluación</a></h3>
+        <div>
+            <p>                
+                <ul>
+                    <li>@Html.ActionLink("Crear Tipo De Cuestionario", "CreateQuestionnaire", "AdminFac")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Tipo De Cuestionario", "UpdateQuestionnaire", "AdminFac")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Crear Grupo", "CreateGroup", "AdminFac")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Grupo", "UpdateGroup", "AdminFac")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Crear Preguntas", "CreateQuestion", "AdminFac")</li>
+                    <li>@Html.ActionLink("Editar/Eliminar Preguntas", "UpdateQuestion", "AdminFac")</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Asignar Cuestionario", "AssignQuestionnaire", "AdminFac")</li>
+                    <li>@Html.ActionLink("Editar Asignación Cuestionario", "EditarAssignQuestionnaire", "AdminFac")</li>
+                </ul>
+            </p>
+        </div>
+        
+        <h3><a href="#">Importar Datos</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("SIGELA", "ImportDataSIGELA", "AdminFac")</li>
+                    <li>@Html.ActionLink("SIMCA", "ImportDataSIMCA", "AdminFac")</li>
+                    <li>@Html.ActionLink("Coordinadores de comites", "ImportDataC", "AdminFac")</li>
+                </ul>
+            </p>
+        </div>
+        
+        <h3><a href="#">Evaluar Jefes De Labor</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Evaluar Jefes de Labor", "ListJefeLabor", "AdminFac")</li>
+                </ul>
+            </p>
+        </div>      
+        <h3><a href="#">Configuraciones Básicas</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Gestionar Periodos Académicos", "AcademicPeriods", "AdminFac")</li>
+                </ul>
+            </p>
+        </div>
+        }    
+    </div>

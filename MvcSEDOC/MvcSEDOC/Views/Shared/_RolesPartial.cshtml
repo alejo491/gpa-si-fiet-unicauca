@@ -1,0 +1,53 @@
+﻿@{
+    System.Collections.ArrayList lista_roles = (System.Collections.ArrayList)HttpContext.Current.Session["roles"];
+    string controller_name = ViewContext.RouteData.Values["Controller"].ToString();
+}
+@try
+{
+    for (int i = 0; i < lista_roles.Count; i++)
+    {
+        string rol;
+        if (controller_name == (string)lista_roles[i])
+        {
+            if (@lista_roles[i].Equals("AdminFac"))
+            {
+            <a class="active" href="@Url.Action("Index", controller_name)"><span>Administrador De Facultad</span></a>  
+            }
+            if (@lista_roles[i].Equals("DepartmentChief"))
+            {
+            <a class="active" href="@Url.Action("Index", controller_name)"><span>Jefe de Departamento</span></a>  
+            }
+            if (@lista_roles[i].Equals("WorkChief"))
+            {
+             <a class="active" href="@Url.Action("Index", controller_name)"><span>Jefe de Labor</span></a>    
+            }
+            if (@lista_roles[i].Equals("Teacher"))
+            {
+             <a class="active" href="@Url.Action("Index", controller_name)"><span>Docente</span></a>  
+            }
+        }
+        else
+        {
+            if (@lista_roles[i].Equals("AdminFac"))
+            { 
+            <a  href="@Url.Action("Index", (string)lista_roles[i])"><span>Administrador De Facultad</span></a>
+            }
+            if (@lista_roles[i].Equals("DepartmentChief"))
+            { 
+            <a  href="@Url.Action("Index", (string)lista_roles[i])"><span>Jefe De Departamento</span></a>
+            }
+            if (@lista_roles[i].Equals("WorkChief"))
+            { 
+            <a  href="@Url.Action("Index", (string)lista_roles[i])"><span>Jefe De Labor</span></a>
+            }
+            if (@lista_roles[i].Equals("Teacher"))
+            { 
+            <a  href="@Url.Action("Index", (string)lista_roles[i])"><span>Docente</span></a>
+            }
+        }
+    <div class="menulines"></div>
+    }
+}
+catch { 
+     <meta http-equiv="Refresh" content="1; url=@Url.Action("Login", "User")" />
+}

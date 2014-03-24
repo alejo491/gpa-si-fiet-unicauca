@@ -1,0 +1,67 @@
+﻿@model MvcSEDOC.Models.grupo
+@{
+    ViewBag.Title = "Grupo a eliminar";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/admin-UpdateGroup.js")" type="text/javascript"></script>
+}
+
+<h2>Datos del grupo a eliminar</h2>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="accepted">@ViewBag.Message</div>
+    <meta http-equiv="Refresh" content="1; url=@Url.Action("UpDateGroup", "Admin")" />
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+         @Html.HiddenFor(model => model.idcuestionario)
+         @Html.HiddenFor(model => model.idgrupo)
+       <fieldset>        
+        <div class="editor-field" style="margin-top:2em; font-family:Arial">
+            <table>
+                <tr>
+                    <td> <label for="idcuestionario">Id cuestionario: </label></td>
+                    <td>
+                        @Html.EditorFor(model => model.idcuestionario)
+                        
+                        @Html.ValidationMessageFor(model => model.idcuestionario)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="nombre">Nombre: </label></td>
+                    <td>
+                        @Html.EditorFor(model => model.nombre)
+                        @Html.ValidationMessageFor(model => model.nombre)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="orden">Orden: </label></td>
+                    <td>
+                        @Html.EditorFor(model => model.orden)
+                        @Html.ValidationMessageFor(model => model.orden)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="porcentaje">Porecentaje: </label></td>
+                    <td>
+                        @Html.EditorFor(model => model.porcentaje)
+                        @Html.ValidationMessageFor(model => model.porcentaje)
+                    </td>
+                </tr>
+            </table>                             
+        </div>
+        <p>
+            <input type="submit" value="Eliminar" />
+        </p>
+    </fieldset>
+}
+
+<a class="miga" href="@Url.Action("Index","Admin")"> Volver a Inicio </a>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MvcSEDOC.Models.savedDataSIGELA>
+@{
+    ViewBag.Title = "Importar Datos de SIGELA";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+<h2>Importar Datos de Coordinadores Externos</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="error">@ViewBag.Error</div><br />
+}
+
+<fieldset>
+    <form method="post" action="@Url.Action("ImportDataC", "Admin")" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td><label for="excelfile">Seleccionar Archivo Excel</label><br /></td>
+                <td><input type="file" name="excelfile" /><br /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Cargar Archivo"/></td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+
+@if (!string.IsNullOrEmpty(ViewBag.FileValid))
+{
+    <div class="accepted">
+        @ViewBag.FileValid<br />
+        @if(ViewBag.Teacreg==0) 
+        {
+            <span>No se registro ningun coordinador</span>
+        }
+        else
+        {
+            <span>Se encontraron @ViewBag.Teacreg nuevos coordinadores</span>
+        }
+        <br />
+        
+    </div><br />
+}
+
+@if (Model.Count() > 0)
+{ 
+    <table class="list" style="width:100%">
+        <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Identificación</th>
+            <th>Labor</th>
+            <th>Descripción Labor</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.nombre
+                </td>
+                <td>
+                    @item.apellido
+                </td>
+                <td>
+                    @item.identificacion
+                </td>
+                <td>
+                    @item.tipolabor
+                </td>
+                <td>
+                    @item.nombrelabor
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<a class="miga" href="@Url.Action("Index","Admin")"> Volver a Inicio </a>

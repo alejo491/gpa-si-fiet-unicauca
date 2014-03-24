@@ -1,0 +1,126 @@
+﻿@using MvcSEDOC.Controllers;
+           
+@{
+    ViewBag.Title = "Generar Reporte";
+    string guion = "NC";
+    List<MvcSEDOC.Models.AutoevaluacionDocente> reporte = ViewBag.lista;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>
+  
+}
+else
+{
+    if (ViewBag.datos == 0)
+    {
+        <div class="errorEd">No se le asigno dirigir labores en este periodo</div>
+    }
+    else
+    { 
+<h2>Reporte del Departamento @ViewBag.departamento</h2>
+
+<table width="100%">   
+    <tr>
+     <td>
+        <div class="ui-widget">
+            <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="report" style='width:100%'>
+                    <tbody>
+                         @if (@reporte.Count > 0)
+                         {
+                            <tr>                               
+                                <td>Fecha De Consulta: @reporte[0].fechaevaluacion</td>
+                            </tr>
+                            <tr>                                
+                                <td>Periodo: @reporte[0].periodoanio-@reporte[0].periodonum</td>
+                            </tr>
+                         }
+                        @foreach (MvcSEDOC.Models.AutoevaluacionDocente mireporte in reporte)
+                        {
+                            <tr>
+                                <td>
+                                <table class="report" style='width:100%'>
+                                    <tr>
+                                        <td style='width:30%'><b>Nombre Profesor</b></td>
+                                        <td>@mireporte.nombredocente</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='width:30%'><b>Nombre Jefe</b></td>
+                                        <td>@mireporte.nombrejefe</td>
+                                    </tr>                                    
+                                   
+                                </table>    
+                                <br />
+                                <table id='LaborChiefs' class='report' style='width:100%'>                                   
+                                    
+                                            @foreach (MvcSEDOC.Models.ResAutoEvaluacionLabor laborEv in mireporte.autoevaluacioneslabores)
+                                            {                                                
+                                                <thead>                                                     
+                                                    <tr>
+                                                        <th align="center" style='width:5%'>ID Labor</th>
+                                                        <th align="center" >Tipo</th>
+                                                        <th align="center" colspan="2">Labor</th>                                                      
+                                                        <th align="center">Nota</th>    
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>@laborEv.idlabor</td>
+                                                    <td>@laborEv.tipolaborcorto</td>
+                                                    <td colspan="2">@laborEv.descripcion</td>                                                    
+                                                    <td>@((laborEv.nota == -1) ? "NC" : laborEv.nota.ToString())</td>                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td align="center"  colspan="5"><strong>Problema</strong></td>                                                
+                                                </tr>
+                                                <tr>
+                                                    <td align="left"><strong>Descripción</strong></td>
+                                                    <td align="justify" colspan="4">@laborEv.problemadescripcion</td>                                                                                    
+                                                </tr>                         
+                                                <tr>                                    
+                                                    <td align="left" ><strong>Solución</strong></td> 
+                                                    <td align="justify" colspan="4">@laborEv.problemasolucion</td>       
+                                                </tr>
+                                                <tr class='sub'>
+                                                    <td align="center"  colspan="5"><strong>Resultado</strong></td>                                                
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" ><strong>Descripción</strong></td>
+                                                    <td align="justify" colspan="4">@laborEv.resultadodescripcion</td>                                                                                     
+                                                </tr>                         
+                                                <tr>
+                                                    <td align="left" ><strong>Ubicación</strong></td>
+                                                    <td align="justify" colspan="4">@laborEv.resultadosolucion</td> 
+                                                </tr>
+                                                <tr></tr>                                            
+                                    </tbody>
+                                            }                                    
+                                </table> <br />
+                            </td>
+                          </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+         </div>
+     </td>
+    </tr>
+    <tr>
+        <td>
+        NC : "No Calificado"<br />
+        </td>
+    </tr>
+    <tr>
+       <td align="right" >
+       @Html.ActionLink("Exportar a Excel", "ExportToExcelAutoevaluacion", "WorkChief")
+       </td>
+    </tr>
+</table>
+    }
+}

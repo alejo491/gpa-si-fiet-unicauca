@@ -1,0 +1,107 @@
+﻿@model IEnumerable<MvcSEDOC.Models.DocenteMateria>
+@{
+    ViewBag.Title = "Importar Datos de SIMCA";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+<h2>Importar Datos de SIMCA</h2>
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+<div class="error">@ViewBag.Error</div>
+}
+<fieldset>
+<form method="post" action="@Url.Action("ImportDataSIMCA", "AdminFac")" enctype="multipart/form-data">
+  <table>
+    <tr>
+      <td>
+         <label for="excelfile">Seleccionar Archivo</label><br />
+      </td>
+      <td>
+         <input type="file" name="excelfile" value="" /><br />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Cargar Archivo"/>
+      </td>
+    </tr>
+    
+  </table>
+</form>
+</fieldset>
+@if (Model.Count() == 0)
+{ 
+     <h1>NO HUBO CAMBIOS QUE REALIZAR</h1>
+}
+else
+{  
+    <table id='TableidLabor' class='list' colspan=2 style='width:100%'>
+    <thead>
+       <tr align="center">
+          <th colspan='7' align='center'>DATOS GUARDADOS</th>
+       </tr>
+       <tr>
+           <th  style='width:30px;'>Identificaci&oacute;n</th>
+           <th style='width:30px;'>Nombre</th>
+           <th  style='width:30px;'>Apellido</th>      
+           <th  style='width:30px;'>C&oacute;digo Materia</th>     
+           <th  style='width:30px;'>Nombre Materia</th>    
+           <th  style='width:30px;'>Grupo</th>
+           <th  style='width:30px;'>Evaluaci&oacute;n</th>
+       </tr>
+     </thead>
+     <tbody></tbody>     
+    @foreach (var item in Model)
+    {
+        if (item.guardado == 1)
+        { 
+        <tr>
+           <td style='width:30px;'>@item.identificacion</td>
+           <td style='width:30px;'>@item.nombres</td>
+           <td  style='width:30px;'>@item.apellidos</td>           
+           <td  style='width:30px;'>@item.codigomateria</td>
+           <td  style='width:30px;'>@item.nombremateria</td>
+           <td  style='width:30px;'>@item.grupo</td>
+           <td  style='width:30px;'>@item.evalest</td>
+        </tr>
+        }
+    }
+    </table>
+    <br />
+    <br />
+    <h4><p>Para los datos no guardados verifique que el e-mail del docente exista y que la materia esté asiganada a dicho docente.</p></h4><br />
+    <table id='TableidLabor' class='list' style='width:100%'>
+    <thead>
+       <tr align="center">
+          <th colspan='5' align='center'>DATOS NO GUARDADOS</th>
+       </tr>
+       <tr>
+           <th  style='width:30px;'>C&oacute;digo Materia</th>
+           <th  style='width:30px;'>Materia</th>
+           <th  style='width:30px;'>Grupo</th>
+           <th  style='width:30px;'>Identificaci&oacute;n</th>
+           <th  style='width:30px;'>Evaluaci&oacute;n</th>
+       </tr>
+     </thead>
+     <tbody></tbody>     
+    @foreach (var item in Model)
+    {
+        if (item.guardado == 0)
+        { 
+        <tr>
+          <td  style='width:30px;'>@item.codigomateria</td>
+          <td  style='width:30px;'>@item.nombremateria</td>
+          <td  style='width:30px;'>@item.grupo</td>
+          <td  style='width:30px;'>@item.identificacion</td>          
+          <td  style='width:30px;'>@item.evalest</td>
+        </tr>
+        }
+    }
+    </table>
+}
+
+<a class="miga" href="@Url.Action("Index", "AdminFac")"> Volver a Inicio </a>

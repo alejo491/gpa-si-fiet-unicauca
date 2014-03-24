@@ -1,0 +1,85 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Ver Evaluaciones";
+    string guion = "NC";
+    MvcSEDOC.Models.ConsolidadoDocente mireporte = ViewBag.reporte;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+
+<h2>Evaluaciones de @mireporte.nombredocente</h2>
+
+<table style="width:80%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="report" style='width:100%'>
+                    <tr>
+                        <td>Nombre Profesor</td>
+                        <td>@mireporte.nombredocente</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre Jefe</td>
+                        <td>@mireporte.nombrejefe</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha Evaluación</td>
+                        <td>@mireporte.fechaevaluacion</td>
+                    </tr>
+                    <tr>
+                        <td>Nota Final</td>
+                        <td>@mireporte.notafinal</td>
+                    </tr>
+                </table>
+                <br />
+                <table id='LaborChiefs' class='report' style='width:100%'>
+                    <thead> 
+                        <tr>
+                            <th align="center">Periodo @mireporte.periodoanio-@mireporte.periodonum</th>
+                            <th align="center">Tipo</th>
+                            <th align="center">H/S</th>
+                           @* <th align="center">%</th>*@
+                            <th align="center">Est</th>
+                            <th align="center">AutoEv</th>
+                            <th align="center">Jefe</th>
+                            <th align="center">Nota</th>
+                           @* <th align="center">Acumula</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (MvcSEDOC.Models.ResEvaluacionLabor laborEv in mireporte.evaluacioneslabores)
+                            {
+                                <tr>
+                                    <td>@laborEv.descripcion</td>
+                                    <td>@laborEv.tipolaborcorto</td>
+                                    <td>@laborEv.horasxsemana</td>
+                                   @* <td>@laborEv.porcentaje</td>*@
+                                    @if (laborEv.tipolaborcorto != "DD" && laborEv.tipolaborcorto != "TDGI" && laborEv.tipolaborcorto != "TDG")
+                                    {
+                                        <td>@((laborEv.evalest == -1) ? "" : laborEv.evalest.ToString())</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@((laborEv.evalest == -1) ? "NC" : laborEv.evalest.ToString())</td>
+                                    } 
+                                    <td>@((laborEv.evalauto == -1) ? "NC" : laborEv.evalauto.ToString())</td>
+                                    <td>@((laborEv.evaljefe == -1) ? "NC" : laborEv.evaljefe.ToString())</td>
+                                     <td>@((laborEv.nota == 0) ? "NC" : laborEv.nota.ToString())</td>
+                                    
+                                   @* <td>@laborEv.acumula</td>*@
+                                </tr>
+                            }
+                    </tbody>
+                </table> <br />
+              @*  NC : "No Calificado"*@
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td>@Html.ActionLink("Volver", "CreateQuery", "WorkChief")</td>
+    </tr>
+</table> 
