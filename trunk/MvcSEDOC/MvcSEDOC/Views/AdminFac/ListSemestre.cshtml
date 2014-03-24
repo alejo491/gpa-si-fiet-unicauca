@@ -1,0 +1,55 @@
+﻿@model MvcSEDOC.Models.departamento
+
+@{
+    ViewBag.Title = "Lista De Materias";
+    int dep = ViewBag.iddepa;
+    string nomdep = ViewBag.nombredepa;     
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/adminfac-ListSemestre.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}
+
+<h2>Lista De Materias Del Departamento De @nomdep</h2>   
+
+<table style="width:100%;">
+    <tr>
+        <td>
+        <div class="ui-widget">
+	        <label for="search_semestre">Buscar Semestre: </label>	       
+            <select name="semestres" id="semestres" onchange="loadTable(this.value, @dep)">
+                <option id="0" value="0">Seleccione el Semestre</option>
+                <option id="1" value="1">Semestre 1</option>
+                <option id="2" value="2">Semestre 2</option>
+                <option id="3" value="3">Semestre 3</option>
+                <option id="4" value="4">Semestre 4</option>
+                <option id="5" value="5">Semestre 5</option>
+                <option id="6" value="6">Semestre 6</option>
+                <option id="7" value="7">Semestre 7</option>
+                <option id="8" value="8">Semestre 8</option>
+                <option id="9" value="9">Semestre 9</option>
+                <option id="10" value="10">Semestre 10</option> 
+            </select> 
+        </div>
+        </td>        
+    </tr>
+    
+    <tr>
+     <td><div class="ui-widget">
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+          </div>
+     </td>
+    </tr>
+    <tr>
+        <td><h3>@Html.ActionLink("Volver", "ListMateria", "AdminFac")</h3></td>
+    </tr>
+</table>
+

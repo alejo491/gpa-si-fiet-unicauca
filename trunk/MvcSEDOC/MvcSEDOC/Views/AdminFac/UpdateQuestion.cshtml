@@ -1,0 +1,71 @@
+﻿@model MvcSEDOC.Models.pregunta
+
+@{
+    ViewBag.Title = "Editar Pregunta";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/adminfac-UpdateQuestion.js")" type="text/javascript"></script>
+}
+
+<h2>Editar Pregunta</h2>
+
+<table style="width:100%;">
+    <tr>
+        <td>
+        <div class="ui-widget">
+	        <label for="search_term">Buscar Cuestionario: </label>
+	        <input id="search_term" />
+        </div>
+        </td>
+        
+    </tr>
+    
+    <tr>
+     <td><div class="ui-widget" style="width:100%;">
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+          </div>
+     </td>
+    </tr>
+    
+</table>
+
+<div id="dialogEditQuestion" title="Editar Pregunta">
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+ 
+        <fieldset>
+            <table>
+                <tr>
+                    <td><div class="editor-label"><strong>Pregunta a actualizar:</strong></div></td>
+                    <td><div class="editor-field" id="QuestionName"></div></td>
+                </tr>
+            </table>
+            <div class="editor-label">
+                Editar la pregunta:
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.pregunta1, new { Style = "width:100%; min-height: 85px;" })
+                @Html.ValidationMessageFor(model => model.pregunta1)
+                @Html.HiddenFor(model=> model.idgrupo)
+                @Html.HiddenFor(model => model.idpregunta)
+                <input type="hidden" id="idQuestionnaire" />
+            </div>
+        </fieldset>
+    }
+ 
+</div>
+
+<div id="dialogDeleteQuestionConfirm" title="Eliminar la Pregunta?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Esta seguro que desea eliminar esta pregunta de forma permanente?</p>
+</div>
+
+<a class="miga" href="@Url.Action("Index","AdminFac")"> Volver a Inicio </a>

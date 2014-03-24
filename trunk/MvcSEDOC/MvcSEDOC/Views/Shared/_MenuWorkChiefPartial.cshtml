@@ -1,0 +1,84 @@
+﻿ @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+     @*if (!User.IsInRole("WorkChief"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }*@
+   }
+
+ @*// inicio cambio edv*@
+@{
+    //int id = (int)HttpContext.Current.Session["docenteId"];
+    int permisos = 0;
+    System.Collections.ArrayList lista_roles = (System.Collections.ArrayList)HttpContext.Current.Session["roles"];
+    
+}
+@for (int i = 0; i < lista_roles.Count; i++)
+{
+    if (@lista_roles[i].Equals("Decano"))
+    {
+        permisos = 1;
+    }
+    if (@lista_roles[i].Equals("Coordinador"))
+    {
+        permisos = 2;
+    }
+}
+         
+
+ @* // fin cambio edv*@
+
+<div id="accordionMenu" optionselected="@ViewBag.optionmenu">
+     @if (periodoActual != 1)
+     {
+    <h3><a href="#">Evaluaciones</a></h3>
+    <div>
+        <p>
+            <ul>
+                <li>@Html.ActionLink("Evaluar Docentes", "evaluateSubordinates", "WorkChief")</li>
+            </ul>                
+        </p>
+	</div>
+     }
+    <h3><a href="#">Generar Consultas</a></h3>
+    <div>
+        <p>                
+            <ul>
+                <li>@Html.ActionLink("Consultar Evaluaciones", "CreateQuery", "WorkChief")</li>
+            </ul>                   
+            <hr />
+            <ul>
+                <li>@Html.ActionLink("Problemas De Las Labores", "GetLaborType", "WorkChief")</li>
+            </ul>
+            <hr />
+            <ul>
+                    <li>@Html.ActionLink("Mis Calificaciones", "AssessLaborChief", "WorkChief")</li>                    
+            </ul>
+        </p>
+	</div>
+    <h3><a href="#">Generar Reportes</a></h3>
+    <div>
+        <p>
+            <ul>
+                <li>@Html.ActionLink("Reporte De Evaluación Docente", "CreateReport", "WorkChief")</li>
+            </ul>
+            <hr />
+            <ul>
+                <li>@Html.ActionLink("Reporte De Autoevaluación Docente", "CreateReportAE", "WorkChief")</li>
+            </ul>                
+        </p>
+    </div>
+    @if (permisos == 2)
+    {
+    <h3><a href="#">Cambiar contraseña</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Cambiar contraseña", "ChangePass", "WorkChief")</li>
+                </ul>
+            </p>
+    </div>
+    }
+</div>

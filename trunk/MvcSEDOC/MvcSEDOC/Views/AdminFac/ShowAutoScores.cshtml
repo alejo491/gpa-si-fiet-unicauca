@@ -1,0 +1,97 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Autoevaluaciones";
+    string guion = "NC";
+    List<MvcSEDOC.Models.AutoevaluacionDocente> mireporte = ViewBag.reporte;
+    string tipo = ViewBag.tipo;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+<h2>Autoevaluaciones De Las Labores @ViewBag.tipo Del Departamento De @ViewBag.dep</h2>
+
+<table style="width:100%"> 
+    <tr>
+        <td>
+            <div class="ui-widget"> 
+              <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                    @if (mireporte.Count > 0)
+                      {
+                          <table class="report" style='width:100%'>
+                                <tr>
+                                    <td ><strong> Fecha De Consulta</strong> </td>
+                                    <td colspan="2">@mireporte[0].fechaevaluacion</td>
+                                </tr>
+                                <tr>                            
+                                    <td ><strong> Periodo</strong> </td>
+                                    <td>@mireporte[0].periodoanio-@mireporte[0].periodonum</td>                           
+                                </tr>
+                                <tr>
+                                    <td width="30%"><strong>Jefe De Departamento</strong> </td>
+                                    <td colspan="4">@mireporte[0].nombrejefe</td>
+                                </tr>                                
+                          </table>
+                          <br />
+                      }
+                    
+                    @foreach (MvcSEDOC.Models.AutoevaluacionDocente AUlabor in mireporte)
+                    {
+                        foreach (MvcSEDOC.Models.ResAutoEvaluacionLabor eva in AUlabor.autoevaluacioneslabores)
+                        {                        
+                            if(eva.tipolabor == tipo)
+                            {                        
+                                <table id='LaborChiefs' class='report' style='width:100%'>                    
+                                <thead> 
+                                    <tr class='sub'>                            
+                                        <th align="center" >Docente</th>
+                                        <th align="center" colspan="2">@AUlabor.nombredocente</th> 
+                                        <th align="center" >Nota</th>                                                                 
+                                        <td align="center" style='width:20%'>@((eva.nota == -1) ? "NC" : eva.nota.ToString())</td> 
+                                   </tr>
+                                </thead>
+                                <tbody>                           
+                                    <tr>
+                                        <th align="center" >Descripci&oacute;n</th>
+                                        <td colspan="4">@eva.descripcion</td>
+                                        </tr> 
+                                    <tr>
+                                        <td align="center"  colspan="5"><strong>Problema</strong></td>                                                
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style='width:20%'><strong>Descripción</strong></td>
+                                        <td align="justify" colspan="4">@eva.problemadescripcion</td>                                                                                    
+                                    </tr>                         
+                                    <tr>                                    
+                                        <td align="left" style='width:20%'><strong>Solución</strong></td> 
+                                        <td align="justify" colspan="4">@eva.problemasolucion</td>       
+                                    </tr>
+                                    <tr class='sub'>
+                                        <td align="center"  colspan="5"><strong>Resultado</strong></td>                                                
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style='width:20%'><strong>Descripción</strong></td>
+                                        <td align="justify" colspan="4">@eva.resultadodescripcion</td>                                                                                     
+                                    </tr>                         
+                                    <tr>
+                                        <td align="left" style='width:20%'><strong>Ubicación</strong></td>
+                                        <td align="justify" colspan="4">@eva.resultadosolucion</td> 
+                                    </tr>                           
+                                </tbody>              
+                    
+                            </table>                   
+                                <br />
+                            }
+                        }
+                    }
+                    NC : "No Calificado"
+                </div>          
+          </div>
+        </td>
+    </tr> 
+    <tr>
+        <td><h3>@Html.ActionLink("Volver", "ListDocente", "AdminFac")</h3></td>
+    </tr>
+</table> 

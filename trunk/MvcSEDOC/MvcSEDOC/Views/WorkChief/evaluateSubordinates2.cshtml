@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Evaluar Docentes a Cargo";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>
+    <meta http-equiv="Refresh" content="1; url=@Url.Action("evaluateSubordinates", "WorkChief")" />  
+    
+}
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/accordionEvaluteSubordinateReady.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/workchief-EvaluateSubordinates1.js")" type="text/javascript"></script>
+}
+
+<h2>Evaluar Docentes a Cargo</h2>

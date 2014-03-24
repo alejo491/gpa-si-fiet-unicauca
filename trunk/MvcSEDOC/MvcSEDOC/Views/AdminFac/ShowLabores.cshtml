@@ -1,0 +1,266 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Ver Evaluaciones";
+    string guion = "NC";
+    MvcSEDOC.Models.ConsolidadoLabores mireporte = ViewBag.reporte;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+<h2>Labores del Docente @mireporte.nombredocente</h2>
+
+<table style="width:100%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="report" style='width:100%'>
+                    <tr>
+                        <td width="30%"><strong> Nombre Profesor</strong> </td>
+                        <td>@mireporte.nombredocente</td>
+                    </tr>
+                    <tr>
+                        <td width="30%"><strong> Nombre Jefe</strong> </td>
+                        <td>@mireporte.nombrejefe</td>
+                    </tr>
+                    <tr>
+                        <td width="30%"><strong> Fecha De Consulta</strong> </td>
+                        <td>@mireporte.fechaevaluacion</td>
+                    </tr>
+                    <tr>
+                        <td width="30%"><strong> Periodo</strong> </td>
+                        <td>@mireporte.periodoanio-@mireporte.periodonum</td>
+                    </tr>
+                </table>
+                <br />               
+
+                @foreach (var labor in mireporte.detalleslabores)
+                {
+                <table id='LaborChiefs' class='report' style='width:100%'>
+                     
+                        <tr>                            
+                            <td align="center" width="20%"><strong>Tipo De Labor</strong></td>
+                            <td align="center" colspan="5">@labor</td>
+                           @*<td align="center">Tipo Corto</td>
+                            <td>@labor.tipolaborcorto</td>*@
+                        </tr>
+                        @switch (@labor)
+                        {
+                            case "Gestion":
+                                foreach (var gestion in @mireporte.labGestion)
+                                {
+                                    <tr>                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>                                        
+                                        <td align="center"><strong>Nombre Del Cargo</strong></td>                                        
+                                        <td align="center" width="10%"><strong>H-S</strong></td>
+                                        <td align="center" width="10%"><strong>Unidad</strong></td>
+                                        <td align="center" width="10%"><strong>Semanas Laborales</strong> </td>                                        
+                                    </tr>
+                                    <tr>                            
+                                        <td width="20%">@gestion.idlabor</td>
+                                        <td>@gestion.nombrecargo</td>
+                                        <td width="10%">@gestion.horassemana</td>
+                                        <td width="10%">@((gestion.unidad == null) ? " " : gestion.unidad.ToString())</td>
+                                        <td width="10%">@((gestion.semanaslaborales == null) ? " " : gestion.semanaslaborales.ToString())</td>
+                                    </tr>
+                                }
+                                break;
+
+                            case "Social":
+                                foreach (var social in @mireporte.labSocial)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>
+                                        <td align="center"><strong>Resolución</strong></td>                                        
+                                        <td align="center"><strong>Nombre Del Proyecto</strong></td>
+                                        <td align="center" width="10%"><strong>H-S</strong></td>
+                                        <td align="center" width="10%"><strong>Unidad</strong></td>
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@social.idlabor</td>
+                                        <td>@social.resolucion</td>                                        
+                                        <td>@social.nombreproyecto</td>                                         
+                                        <td width="10%">@social.horassemana</td>
+                                        <td width="10%">@((social.unidad == null) ? " " : social.unidad.ToString())</td>
+                                    </tr>
+                                    <tr class="list">                             
+                                        <td align="center" colspan="2"><strong>Fecha Inicio</strong></td>
+                                        <td align="center" colspan="2"><strong>Fecha Fin</strong></td>                                        
+                                        <td align="center" width="10%"><strong>Semanas Laborales</strong> </td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">@((social.fechainicio == null) ? " " : social.fechainicio.ToString())</td>
+                                        <td colspan="2">@((social.fechafin == null) ? " " : social.fechafin.ToString())</td>
+                                        <td width="10%">@((social.semanaslaborales == null) ? " " : social.semanaslaborales.ToString())</td>
+                                    </tr>
+                                }
+                                break;
+
+                            case "Trabajo de Grado":
+                                foreach (var trabajo in @mireporte.labTrabajoDeGrado)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>
+                                        <td align="center"><strong>Resolución</strong></td>                                        
+                                        <td align="center" colspan="2"><strong>T&iacute;tulo De Trabajo</strong></td>
+                                        <td align="center" width="10%"><strong>H-S</strong></td>                                        
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@trabajo.idlabor</td>
+                                        <td>@trabajo.resolucion</td>                                        
+                                        <td  colspan="2">@trabajo.titulotrabajo</td>                                         
+                                        <td width="10%">@trabajo.horassemana</td>                                        
+                                    </tr>
+                                    <tr class="list">                             
+                                        <td align="center" colspan="2"><strong>Fecha Inicio</strong></td>
+                                        <td align="center" colspan="2"><strong>Fecha Fin</strong></td>                                        
+                                        <td align="center" width="10%"><strong>Semanas Laborales</strong> </td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">@((trabajo.fechainicio == null) ? " " : trabajo.fechainicio.ToString())</td>
+                                        <td colspan="2">@((trabajo.fechafin == null) ? " " : trabajo.fechafin.ToString())</td>
+                                        <td width="10%">@((trabajo.semanaslaborales == null) ? " " : trabajo.semanaslaborales.ToString())</td>
+                                    </tr>
+                                }
+                                break;
+
+                            case "Trabajo de Grado Investigación":
+                                foreach (var trabajogi in @mireporte.labTrabajoDegradoInvestigacion)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>                                                                                
+                                        <td align="center"><strong>Título Del Trabajo</strong></td>                                        
+                                        <td align="center" width="20%"><strong>H-S</strong></td>
+                                        <td align="center" width="20%"><strong>S-Laborales</strong> </td>
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@trabajogi.idlabor</td>
+                                        <td>@trabajogi.titulotrabajo</td>
+                                        <td width="20%">@trabajogi.horassemana</td>
+                                        <td width="20%">@((trabajogi.semanaslaborales == null) ? " " : trabajogi.semanaslaborales.ToString())</td>
+                                    </tr>                                    
+                                }
+                                break;
+
+                            case "Investigación":
+                                foreach (var investigacion in @mireporte.labInvestigacion)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>
+                                        <td align="center"><strong>C&oacute;digo VRI</strong></td>                                        
+                                        <td align="center" colspan="2"><strong>Nombre Del Proyecto</strong></td>
+                                        <td align="center" width="10%"><strong>H-S</strong></td>                                        
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@investigacion.idlabor</td>
+                                        <td>@investigacion.codigovri</td>                                        
+                                        <td  colspan="2">@investigacion.nombreproyecto</td>                                         
+                                        <td width="10%">@investigacion.horassemana</td>                                        
+                                    </tr>
+                                    <tr class="list">                             
+                                        <td align="center" colspan="2"><strong>Fecha Inicio</strong></td>
+                                        <td align="center" colspan="2"><strong>Fecha Fin</strong></td>                                        
+                                        <td align="center" width="10%"><strong>Semanas Laborales</strong> </td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">@((investigacion.fechainicio == null) ? " " : investigacion.fechainicio.ToString())</td>
+                                        <td colspan="2">@((investigacion.fechafin == null) ? " " : investigacion.fechafin.ToString())</td>
+                                        <td width="10%">@((investigacion.semanaslaborales == null) ? " " : investigacion.semanaslaborales.ToString())</td>
+                                    </tr>
+                                }
+                                break;
+                                
+                            case "Desarrollo Profesoral":
+                                foreach (var desarrollo in @mireporte.labDesarrolloProfesoral)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>
+                                        <td align="center"><strong>Resolución</strong></td>                                        
+                                        <td align="center" colspan="2"><strong>Nombre De La Actividad</strong></td>
+                                        <td align="center" width="10%"><strong>H-S</strong></td> 
+                                        <td align="center" width="10%"><strong>Semanas Laborales</strong> </td>                                         
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@desarrollo.idlabor</td>
+                                        <td>@desarrollo.resolucion</td>                                        
+                                        <td  colspan="2">@desarrollo.nombreactividad</td>                                         
+                                        <td width="10%">@desarrollo.horassemana</td> 
+                                         <td width="10%">@((desarrollo.semanaslaborales == null) ? " " : desarrollo.semanaslaborales.ToString())</td>                                       
+                                    </tr>                                    
+                                }
+                                break;
+
+                            case "Docencia Directa":
+                                foreach (var docencia in @mireporte.labDocencia)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID Labor</strong></td> 
+                                        <td align="center"><strong>ID Materia</strong></td>
+                                        <td align="center" colspan="2"><strong>Materia</strong></td>                                       
+                                        <td align="center" width="20%"><strong>H-S</strong></td>
+                                        <td align="center" width="20%"><strong>S-Laborales</strong> </td>
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@docencia.labDoc.idlabor</td>
+                                        <td>@docencia.labDoc.idmateria</td>
+                                        <td colspan="2">@docencia.DocMateria.nombremateria</td>
+                                        <td width="20%">@docencia.labDoc.horassemana</td>
+                                        <td width="20%">@((docencia.labDoc.semanaslaborales == null) ? " " : docencia.labDoc.semanaslaborales.ToString())</td>
+                                    </tr>  
+                                    <tr class="list">
+                                        <td align="center"><strong>Grupo</strong></td>                            
+                                        <td align="center" width="20%"><strong>Semestre </strong></td>                                                                                
+                                        <td align="center"><strong>Cr&eacute;ditos</strong></td> 
+                                        <td align="center"><strong>Tipo</strong></td>                                       
+                                        <td align="center" width="20%"><strong>ID Programa</strong></td>
+                                        <td align="center" width="20%"><strong>Programa</strong></td>                                        
+                                    </tr>                                   
+                                    <tr>
+                                        <td>@docencia.labDoc.grupo</td>
+                                        <td width="20%">@docencia.DocMateria.semestre</td>
+                                        <td>@docencia.DocMateria.creditos</td>
+                                        <td>@docencia.DocMateria.tipo</td>                                        
+                                        <td width="20%">@((docencia.DocMateria.idprograma == null) ? " " : docencia.DocMateria.idprograma.ToString())</td>
+                                        <td width="20%">@((docencia.DocMateria.idprograma == null) ? " " : docencia.MatPrograma.nombreprograma.ToString())</td>
+                                    </tr>                                    
+                                }
+                                break;
+
+                            case "Otra":
+                                foreach (var otra in @mireporte.labOtras)
+                                {
+                                    <tr class="list">                            
+                                        <td align="center" width="20%"><strong>ID</strong></td>                                                                                
+                                        <td align="center"><strong>Descripci&oacute;n</strong></td>                                        
+                                        <td align="center" width="20%"><strong>H-S</strong></td>                                        
+                                    </tr>                                   
+                                    <tr>
+                                        <td width="20%">@otra.idlabor</td>
+                                        <td>@otra.descripcion</td>
+                                        <td width="20%">@otra.horassemana</td>                                        
+                                    </tr>                                    
+                                }
+                                break;
+
+                        }                        
+                    
+                    </table>
+                    <br />
+                }  
+                 <br />
+               
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td><h3>@Html.ActionLink("Volver", "ListDocente", "AdminFac")</h3></td>
+    </tr>
+    <tr>
+       <td align="right" >
+       @Html.ActionLink("Exportar a Excel", "ExportToExcelLabores", "AdminFac")
+       </td>
+    </tr>
+</table> 

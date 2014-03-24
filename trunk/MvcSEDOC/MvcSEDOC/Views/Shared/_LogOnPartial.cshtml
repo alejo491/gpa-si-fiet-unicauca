@@ -1,0 +1,8 @@
+﻿@if(Request.IsAuthenticated) {
+    <div id="headerLogout">@Html.ActionLink("Cerrar Sesión", "Logout", "User")</div>
+	<div id="tkbElement"><strong>@User.Identity.Name</strong> |</div>
+}
+else
+{
+    <div id="tkbElement"><strong>@Html.ActionLink("Iniciar Sesión", "Login", "User")</strong></div>
+}

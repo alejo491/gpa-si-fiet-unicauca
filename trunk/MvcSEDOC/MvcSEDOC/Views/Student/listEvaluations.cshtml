@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuStudentPartial")
+}
+
+<h2>Evaluar directores de trabajo de grado/investigación</h2>
+
+<table class="list" style="width:100%;" >
+    <thead>
+        <tr>
+            <th>Nombre Profesor</th>
+            <th style="width:130px;">Acci&oacute;n</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.Docentes)
+{
+    <tr>
+        <td>
+            @item.nombres 
+            @item.apellidos
+        </td>
+        <td>
+            <form method="post" action="@Url.Action("EvaluateSubordinates1", "Student")">
+                         <input type="hidden"  name='labor' id='search_term1' value=@item.idlabor />  
+                         <input type="hidden"  name='usuario' id='search_term2' value=@item.iddocente />  
+                         <input type="hidden"  name='evaluacion' id='search_term3' value=@item.idevaluacion />  
+                          <input  type="submit" class="edit" value="Evaluar"/>               
+              </form>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

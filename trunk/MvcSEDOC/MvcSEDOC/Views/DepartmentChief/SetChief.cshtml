@@ -1,0 +1,38 @@
+﻿@model MvcSEDOC.Models.departamento
+
+@{
+    ViewBag.Title = "Asignar Privilegios";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/DepartmentChief-SetChief.js")" type="text/javascript"></script>
+}
+
+<h2>Asignar Privilegios</h2>
+
+<table width="100%">
+    <tr>
+        <td>
+            <div class="ui-widget">
+               <label for="nombre" >Departamento:  @Html.DisplayFor(model => model.nombre)</label></td>
+	           <input type="hidden" id="search_term"  value="@Html.DisplayFor(model => model.iddepartamento)"/>
+            </div>
+        </td>
+        
+    </tr>
+    
+    <tr>
+         <td>
+              <div class="ui-widget">
+                <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+              </div>
+         </td>
+    </tr>
+    
+</table>
+

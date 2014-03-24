@@ -1,0 +1,25 @@
+﻿@model MvcSEDOC.Models.pregunta
+
+@{
+    ViewBag.Title = "Eliminar Pregunta";
+}
+
+<h2>Eliminar Pregunta</h2> 
+
+<h3>Esta seguro de Eliminar la siguiente Pregunta ?</h3>
+<br />
+<fieldset>
+    <div class="display-label">Pregunta :</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pregunta1)
+    </div>
+</fieldset>
+<br />
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "UpdateQuestion")
+    </p>
+}
+
+<a class="miga" href="@Url.Action("Index","Admin")"> Volver a Inicio </a>

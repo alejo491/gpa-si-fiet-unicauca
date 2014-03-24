@@ -1,0 +1,84 @@
+﻿@using MvcSEDOC.Controllers;
+
+@model MvcSEDOC.Models.evaluacion
+@{
+    ViewBag.Title = "Evaluar Jefe Labor";
+    List<JefeLabor> listacal = ViewBag.lista;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+   
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="accepted">@ViewBag.Message</div>   
+}
+@if (ViewBag.periodo == 0)
+{
+    <div class="errorEd">No puede evaluar jefes de labores en este periodo</div>
+}
+else
+{
+ <script src="@Url.Content("~/Scripts/accordionEvaluteSubordinateReady.js")" type="text/javascript"></script>
+ <script language="javascript" src="@Url.Content("~/Scripts/adminfac-AssessLaborChief.js")" type="text/javascript"></script>  
+
+<h2>Evaluar jefes de labor</h2>
+
+<div id="accordionSubWorks">
+
+    @foreach (var docsub in listacal as List<JefeLabor>)
+    {         
+        <h3><a href="#">@docsub.tipoLabor: @docsub.descripcion</a></h3>
+        <div>
+            <table class="list" style="width:100%;" >
+            <thead>
+                <tr>
+                    <th>Apellidos</th>
+                    <th>Nombres</th>
+                    <th style="width:30px;">Calificación</th>              
+                    <th style="width:30px;">Evaluar</th>
+                </tr>
+            </thead>
+            <tbody>        
+                <tr>
+                    <td>@docsub.apellidos</td>
+                    <td>@docsub.nombres</td>
+                    @if (docsub.evaluacionJefe == -1)
+                    { 
+                        <td id="@docsub.idevaluacion">No tiene</td>
+                    }
+                    else
+                    {
+                        <td id="@docsub.idevaluacion">@docsub.evaluacionJefe</td>
+                    }              
+                                                              
+                    @*<td><a class="edit" id='save' href='/AdminFac/EvaluateSubordinates1?labor=@docsub.idlabor&doce=@docsub.idusuario&idE=@docsub.idevaluacion'  idlabeval="@docsub.idlabor" iddoc="@docsub.idusuario" ideval="@docsub.idevaluacion" docname="@docsub.nombres @docsub.apellidos">Evaluar</a></td>*@
+                     <form method="post" action="@Url.Action("EvaluateSubordinates1", "AdminFac")">
+                     @*<form action='/AdminFac/EvaluateSubordinates1' method='post'>                                             *@
+                         <td><input type="submit" class="edit" value="Evaluar"/></td>
+                         <input type="hidden"  name='labor' id='search_term1' value=@docsub.idlabor />  
+                         <input type="hidden"  name='usuario' id='search_term1' value=@docsub.idusuario />  
+                         <input type="hidden"  name='evaluacion' id='search_term1' value=@docsub.idevaluacion />  
+                        
+                        
+                        </form
+                </tr>        
+            </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<a class="miga" href="@Url.Action("Index", "AdminFac")"> Volver a Inicio </a>
+
+<div id="dialogSaveConfirm" title="Guardar Calificaciones?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Esta seguro que desea guardar las calificaciones?</p>
+</div>
+
+<div id="dialogError" title="Datos no validos">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Los valores deben ser numeros enteros entre 0 y 100</p>
+</div>
+
+}

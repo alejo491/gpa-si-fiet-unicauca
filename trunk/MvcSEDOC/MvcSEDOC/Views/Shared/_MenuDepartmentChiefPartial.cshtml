@@ -1,0 +1,62 @@
+﻿  @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+     if (!User.IsInRole("DepartmentChief"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }
+   } 
+    <div id="accordionMenu" optionselected="@ViewBag.optionmenu">
+        @if (periodoActual != 1)
+        {
+        <h3><a href="#">Gestionar Privilegios</a></h3>
+        <div>
+            <p>
+                <ul>                    
+                   <li> @Html.ActionLink("Asignar Jefe Labor", "AssignWork") </li> 
+                </ul>
+                <hr />
+                <ul>                    
+                   <li> @Html.ActionLink("Editar Jefes Labor", "AssignWork1") </li> 
+                </ul>
+            </p>
+	    </div>
+        }
+        <h3><a href="#">Generar Consultas</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Consultar Evaluaciones Docentes", "CreateQuery", "DepartmentChief")</li>
+                </ul>  
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Consultar Evaluaciones Coordiandores", "CreateQuery1", "DepartmentChief")</li>
+                </ul>  
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Problemas De Las Labores", "GetLaborType", "DepartmentChief")</li>
+                </ul>              
+            </p>
+        </div>
+        <h3><a href="#">Generar Reportes</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Reporte De Evaluación Docente", "CreateReport", "DepartmentChief")</li>                  
+                </ul>
+                <hr />
+                <ul>
+                    <li>@Html.ActionLink("Reporte De Autoevaluación Docente", "CreateReportAE", "DepartmentChief")</li>
+                </ul>                
+            </p>
+        </div>
+        <h3><a href="#">Soportes Evaluación</a></h3>
+        <div>
+            <p>
+                <ul>
+                    <li>@Html.ActionLink("Buscar Soportes de Evaluación", "SearchPdfByUser", "DepartmentChief")</li>                  
+                </ul>         
+            </p>
+        </div>
+    </div>

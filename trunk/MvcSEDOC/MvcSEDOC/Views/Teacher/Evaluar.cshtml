@@ -1,0 +1,154 @@
+﻿@using MvcSEDOC.Controllers;
+@model MvcSEDOC.Models.labor
+
+@{
+    ViewBag.Title = "Autoevaluar Labor";   
+   
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuTeacherPartial")
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+}
+else
+{
+var item = ((List<MvcSEDOC.Controllers.DocenteLabor>)ViewBag.datos).First();
+<script src="@Url.Content("~/Scripts/teacher-Evaluar.js")" type="text/javascript"></script>
+
+
+<center><h2>Autoevaluación de Labor </h2></center>
+ 
+<input type="hidden" id="tipoLabor"  value="@item.tipoLabor"/>
+<input type="hidden" id="idLabor"  value="@item.idlabor"/>
+<input type="hidden" id="search_term"  value="@item.iddocente"/>                   
+<table width="100%">
+    <tr>
+        <td  width="100%" >           
+                <table id='TableAutoEvaluacion' class="ui-widget-content" style='width:100%'>
+                <tr><td>
+                <table width="100%">
+                    <tr><td>Tipo de Labor: </td><td><strong>@item.tipoLabor</strong></td></tr>
+                    <tr><td>Nombre de Labor: </td><td><strong>@item.descripcion</strong></td></tr>                    
+                    <tr><td><strong>Calificación: </strong></td>
+                    <td><input class='calif' type='text' id='cal' name="cal"/></td></tr>                    
+                </table>
+                </td></tr>
+                    
+                    <tr>
+                        <td align="center">
+                            <div class="editor-field">
+	                            <h3><label>Problemas</label></h3>
+                            </div>             
+                        </td>
+                    </tr>
+                    <tr>                                                                                                                                                                                                                                                                                                                                                             <td>
+                        <table id='TableProblema' class="editor-field">
+                               <tr>
+                                    <td style="vertical-align: top">
+                                        <div class="editor-field"  style="vertical-align: top;">
+	                                                    <label>Descripción: </label>
+                                                    </div>
+                                        
+                                    </td>                                                                 
+                                    <td colspan="2">
+                                        <div class="editor-field">
+                                            <textarea class="prob" cols='50' rows='5'  id="PDescripcion" name="PDescripcion"></textarea>                                                
+                                        </div>                        
+                                    </td> 
+                               </tr>
+                               <tr>
+                                    <td style="vertical-align: top">
+                                        <div class="editor-field">
+	                                        <label>Solución: </label>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="editor-field">
+                                            <textarea class="prob" cols='50' rows='5'  id="PSolucion" name="PSolucion"></textarea>                                                
+                                        </div>                        
+                                    </td> 
+                               </tr>
+                        </table>                   
+                    </tr>
+                    
+                    <tr>
+                        <td align="center">
+                            <div class="editor-field">
+	                            <h3><label>Resultados</label></h3>
+                            </div>             
+                        </td>
+                    </tr>
+
+                    <tr>                                                                                                                                                                                                                                                                                                                                                             <td>
+                        <table id='TableResultado' class="editor-field">
+                               <tr>
+                                    <td style="vertical-align: top">
+                                        <div class="editor-field">
+	                                        <label>Descripción: </label>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="editor-field">
+                                            <textarea cols='50' rows='5' class="sol" id="RDescripcion" name="RDescripcion"></textarea>                                                
+                                        </div>                        
+                                    </td> 
+                               </tr>
+
+                               <tr>
+                                    <td style="vertical-align: top">
+                                        <div class="editor-field">
+	                                        <label>Ubicación: </label>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="editor-field">
+                                            <textarea cols='50' rows='5' class="sol" id="RSolucion" name="RSolucion"></textarea>                                                
+                                        </div>                        
+                                    </td> 
+                               </tr>
+                        </table>                   
+                    </tr> 
+                </table>
+          
+        </td>
+    </tr>   
+
+    <tr>
+        <td align="center">
+            <table cellpadding="4" cellspacing="0">
+                <tr>
+                    <td class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="width: 80px; height: 25px; vertical-align: middle; ">
+                        <a class="ui-button-text" href="@Url.Action("EvaluarLabor", "Teacher")"  >Cancelar</a>
+                    </td>
+                    <td style="width: 20px;"> </td>
+                    <td class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" style="width: 80px;  height: 25px; vertical-align: middle; ">
+                        <a class="ui-button-text" href="#" id="save">Guardar</a>
+                    </td>
+                </tr>
+            </table>
+        </td>        
+            
+    </tr>
+</table>
+
+<div id="dialogSaveAutoEvalaucionConfirm" title="Confirmar envio?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Esta seguro que desea guardar esta informacion?</p>
+</div>
+
+<div id="dialogErrorRango" title="Datos no validos">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>La calificación debe ser un número entero entre 0 y 100</p>
+</div>
+
+<div id="dialogErrorTexto" title="Datos no validos">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>La calificación debe ser numérica en el rango entre 0 y 100</p>
+</div>
+
+<div id="dialogValorNulo" title="Campo Obligatorio">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>La calificación no puede ser vacia</p>
+</div>
+}

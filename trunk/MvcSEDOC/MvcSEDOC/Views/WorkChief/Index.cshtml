@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_RolesWorkLayout.cshtml";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+
+<h2>Bienvenido Al Inicio De El Jefe Labor </h2>
+
+<br />
+El Sistema de Evaluación Docente SEDOC ofrece al Jefe Labor las siguientes funcionalidades: <br /><br />
+<ol>
+    <li><strong>1. Evaluar docentes:</strong> que participan en la labor que el dirige.</li>
+    <br />
+    <li><strong>2. Generar Consultas:</strong></li>
+    <li> De las calificaciones obtenidas por los docentes del departamento en las labores que usted dirige.</li>
+    <li> De los problemas presentados en las diferentes labores del departamento que usted dirige.</li>   
+    <br />
+    <li><strong>3. Generar Reportes:</strong></li>
+    <li>De las calificaciones docentes de las labores que usted dirige y exportarlo a un documento en formato Excel.</li>
+    <li>De las autoevaluaciones docentes de las labores que usted dirige y exportarlo a un documento en formato Excel.</li>
+</ol>

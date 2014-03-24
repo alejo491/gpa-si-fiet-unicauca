@@ -1,0 +1,45 @@
+﻿@model MvcSEDOC.Models.usuario
+@{
+    ViewBag.Title = "Consultar Evaluaciones";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+
+<h2>Consultar evaluaciones</h2>
+
+
+@using (Html.BeginForm())
+{
+<table style="width:100%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table id='LaborChiefs' class='list' style='width:100%'>
+                      <thead><tr><th align='center' colspan='5'>Docentes del departamento de @ViewBag.departamento</th></tr> 
+                                <tr class='sub'>
+                                    <th align="center">Apellidos</th>
+                                    <th align="center">Nombres</th>
+                                    <th align="center">Accion</th>
+                                 </tr>
+                      </thead>
+                      <tbody>
+                            @foreach (var item in ViewBag.lista)
+                            {
+                                <tr>
+                                    <td>@item.apellidos</td>
+                                    <td>@item.nombres</td>
+                                    <td align="center">@Html.ActionLink("Ver calificaciones", "ShowScores", new { idusuario = @item.idusuario })</td>
+                                </tr>
+                            }
+                      </tbody>
+                </table> 
+            </div>          
+          </div>
+     </td>
+    </tr>  
+</table> 
+}
+

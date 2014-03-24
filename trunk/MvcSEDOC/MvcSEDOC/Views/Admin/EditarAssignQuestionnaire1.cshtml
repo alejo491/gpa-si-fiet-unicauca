@@ -1,0 +1,33 @@
+﻿@model MvcSEDOC.Models.grupo
+@{
+    ViewBag.Title = "Editar Asignar Cuestionarios";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/admin-CreateGroup2.js")" type="text/javascript"></script>
+}
+
+<h2>Editar Asignar Cuestionarios</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="accepted">@ViewBag.Message</div>   
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+
+<a class="miga" href="@Url.Action("Index","Admin")"> Volver a Inicio </a>

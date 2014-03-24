@@ -1,0 +1,40 @@
+﻿@model MvcSEDOC.Models.docente
+
+@{
+    ViewBag.Title = "Autoevaluación De Labores";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuTeacherPartial")
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="errorEd">@ViewBag.Error</div>    
+}
+else
+{
+ <script src="@Url.Content("~/Scripts/teacher-EvaluarLabor.js")" type="text/javascript"></script>
+    
+<h2>Autoevaluación De Labores</h2>
+
+<table width="100%">
+    <tr>
+        <td>
+            <div class="ui-widget">
+                <label for="nombre" >Docente:  @Html.DisplayFor(model => model.usuario.nombres)  @Html.DisplayFor(model => model.usuario.apellidos)</label>
+                <input type="hidden" id="search_term"  value="@Html.DisplayFor(model => model.iddocente)"/>
+            </div>
+        </td>        
+    </tr>    
+    <tr>
+        <td>
+            <div class="ui-widget">
+                <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+            </div>
+        </td>
+    </tr>
+    
+</table>
+}

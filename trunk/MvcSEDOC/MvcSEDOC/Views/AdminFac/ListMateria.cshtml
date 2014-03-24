@@ -1,0 +1,46 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Autoevaluaciones";
+    string guion = "NC";   
+    MvcSEDOC.Models.facultad mifac = ViewBag.facultad;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuAdminFacPartial")
+}
+
+<h2>Departamentos De La Facultad De @mifac.fac_nombre</h2>
+
+<table style="width:100%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="list" style='width:100%'>
+                    <thead> 
+                        <tr class='sub'>                            
+                            <th align="center" colspan="2">Departamento</th>
+                            <th align="center" colspan="2">Acciones</th>    
+                        </tr>
+                    </thead>                       
+                <tbody> 
+                @foreach (var lista in ViewBag.departamentos)
+                { 
+                    <tr>
+                        <td colspan="2">@lista.nombre</td>
+                        <td align="center" ><a class='edit'>@Html.ActionLink("Ver Docentes", "VerMDocentes", new { id = @lista.iddepartamento })</a></td> 
+                        <td align="center" ><a class='edit'>@Html.ActionLink("Ver Asignaturas", "ListSemestre", new { id = @lista.iddepartamento })</a></td> 
+                   </tr>
+                 }
+                 </tbody>             
+                    
+                </table>                 
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td>@Html.ActionLink("Volver a Inicio", "Index", "AdminFac")</td>        
+    </tr>
+   
+</table> 

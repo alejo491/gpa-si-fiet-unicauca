@@ -1,0 +1,48 @@
+﻿@using MvcSEDOC.Controllers;
+@model MvcSEDOC.Models.labor
+
+@{
+    ViewBag.Title = "Problemas De La Labor";
+    var item = ((List<MvcSEDOC.Controllers.DepartmentChiefController.Labor>)ViewBag.datos).First();
+    
+   
+}
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/DepartmentChief-SearchProblemasLabor.js")" type="text/javascript"></script>
+}
+
+<h2>Problemas De La Labor @item.tipoLabor</h2>
+
+
+
+
+<table width="100%">
+    <tr>
+        <td>
+
+        <div class="ui-widget">
+           <input type="hidden" id="tipo"  value="@item.tipoLabor"/>
+           <input type="hidden" id="descp"  value="@item.descripcion"/> 
+           <input type="hidden" id="search_term"  value="@item.idlabor"/>                   
+        </div>
+
+        </td>
+        
+    </tr>
+    
+    <tr>
+     <td><div class="ui-widget">
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> </div>
+          </div>
+     </td>
+    </tr>  
+     <tr>
+        <td>@Html.ActionLink("Volver", "GetLaborType", "DepartmentChief")</td>        
+    </tr>  
+</table>

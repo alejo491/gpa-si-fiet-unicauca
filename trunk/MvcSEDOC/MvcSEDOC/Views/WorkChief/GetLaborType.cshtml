@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MvcSEDOC.Models.participa>
+
+@{
+    ViewBag.Title = "Problemas De Las Labores";
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+
+
+@if (ViewBag.datos == 0)
+{
+    <div class="errorEd">No se le asigno dirigir labores en este periodo</div>
+}
+else
+{
+    
+ <script src="@Url.Content("~/Scripts/workChief-GetTipoLabor.js")" type="text/javascript"></script>   
+     
+<h2>Las Labores Dirigidas Por @ViewBag.nombre</h2>
+using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <h2>@ViewBag.idd</h2>
+        <table style="width:100%;">    
+            <tr>
+                <td>
+                    <div> 
+                        Tipo de Labor:@Html.DropDownList("tipoLabor", "Labores")
+                    </div>
+                 </td>                 
+            </tr>
+            <tr>
+                <td>
+                    <div class="ui-widget">
+                        <div id="work-area" style="min-height: 200px; width: 100%; padding: 5px;" class="ui-widget-content">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            <td>@Html.ActionLink("Volver", "Index", "WorkChief")</td>        
+            </tr>
+        </table>       
+    </fieldset>
+}
+}

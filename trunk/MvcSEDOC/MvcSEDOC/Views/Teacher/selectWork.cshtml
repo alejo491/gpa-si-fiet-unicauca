@@ -1,0 +1,73 @@
+﻿@model MvcSEDOC.Models.docente
+           
+@{
+    ViewBag.Title = "Realizar Autoevaluación";
+    var docente = ((List<MvcSEDOC.Controllers.DocenteLabor>)ViewBag.lista).First();
+}
+@section MenuSection
+{
+    @Html.Partial("_MenuTeacherPartial")
+}
+
+@section SpecialJavascriptForView
+{
+    <script src="@Url.Content("~/Scripts/teacher-selectWork.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+}
+
+
+<h2>AutoEvaluacion</h2>
+<h3>@docente.nombres @docente.apellidos</h3>
+<input type="hidden" id="iddocente"  value="@docente.iddocente"/>
+
+@using (Html.BeginForm())
+{
+    
+      
+<table style="width:80%"> 
+   
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table id='LaborTeach' class='list' style='width:100%'>
+                      <thead><tr><th align='center' colspan='3'>Labores</th></tr> 
+                                <tr class='sub'>
+                                    <th>Labor</th>
+                                    <th>Tipo de Labor</th>
+                                    <th style="width:18%">Calificacion</th>
+                                 </tr>
+                      </thead>
+                      <tbody>
+                            @foreach (var item in ViewBag.lista as List<MvcSEDOC.Controllers.DocenteLabor>)
+                            {
+                                <tr>
+                                    <td>@item.tipoLabor</td>
+                                    <td>@item.descripcion</td>
+                                    <td><input class="calif" type="text" id='input@(item.idlabor)' idlabor='@(item.idlabor)' value="" maxlength="3" size='3'/></td>
+                                </tr>
+                            }
+                      </tbody>
+                </table> 
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td align="right"><input type="button" value="Guardar" id="btnGuardar" onclick='setEvaluations()'/></td>      
+    </tr>  
+</table> 
+}
+
+<div id="dialogSaveConfirm" title="Guardar Calificaciones?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Esta seguro que desea guardar las calificaciones?</p>
+</div>
+
+<div id="dialogErrorRango" title="Datos no validos">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Los valores deben ser numeros enteros entre 0 y 100</p>
+</div>
+
+<div id="dialogErrorTexto" title="Datos no validos">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Los valores deben ser numeros</p>
+</div>

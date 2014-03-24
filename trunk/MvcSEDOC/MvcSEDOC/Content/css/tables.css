@@ -1,0 +1,99 @@
+/* 
+	Web20 Table Style
+	written by Netway Media, http://www.netway-media.com
+*/
+table.list {
+  border-collapse: collapse;
+  border: 1px solid #BEBEBE;
+  font: normal 11px verdana, arial, helvetica, sans-serif;
+  color: #363636;
+  background: #f6f6f6;
+  text-align:left;
+  }
+table.list caption {
+  text-align: center;
+  font: bold 16px arial, helvetica, sans-serif;
+  background: transparent;
+  padding:6px 4px 8px 0px;
+  color: #000;
+  text-transform: uppercase;
+}
+table.list thead, tfoot {
+    background:url(../images/bg1.png) repeat-x;
+    text-align:left;
+    height:30px;
+}
+table.list thead th, tfoot th {
+    padding:5px;
+}
+
+table.list thead tr.sub 
+{
+    background:url(../images/bg2.png) repeat-x;
+}
+
+table.list thead tr.sub th
+{
+    padding-top:8px;
+}
+
+table.list a {
+    text-decoration:none;
+}
+table.list a:hover {
+    border-bottom: 1px dashed #bbb;
+}
+table.list tr.odd {
+    background: #f1f1f1;
+}
+table.list tbody th, tbody td {
+    padding:5px;
+}
+
+table.list tbody tr:hover {
+    background:#666;
+    color:#ffffff;
+}
+
+table.list tbody tr:hover a {
+    color:#ffffff;
+}
+
+table.nospaced {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+
+/* Tabla para reportes */
+
+table.report {
+  border-collapse: collapse;
+  border: 1px solid #BEBEBE;
+  font: normal 11px verdana, arial, helvetica, sans-serif;
+  color: #363636;
+  background: #f6f6f6;
+  text-align:left;
+  }
+  
+table.report thead {
+    background:url(../images/bg1.png) repeat-x;
+    text-align:left;
+    height:30px;
+}
+
+table.report tfoot 
+{
+    background:url(../images/bg2.png) repeat-x;
+    text-align:left;
+    height:30px;
+}
+
+table.report thead th, tbody td {
+    padding:5px;
+}
+
+table.report, table.report td, table.report th
+{
+    border:1px solid black;
+}

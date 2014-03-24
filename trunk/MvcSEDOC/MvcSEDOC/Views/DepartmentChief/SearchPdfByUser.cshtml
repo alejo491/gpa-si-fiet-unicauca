@@ -1,0 +1,22 @@
+﻿@using MvcSEDOC.Controllers;
+@model MvcSEDOC.Models.usuario
+
+@{
+    ViewBag.Title = "Revisar archivos de soporte";
+    var lstUserInfo = ViewBag.lstInfo;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuDepartmentChiefPartial")
+}
+<h2>Usuarios con archivos de soporte de evaluación</h2>
+
+<table>
+@foreach(DepartmentChiefController.BasicUserInfo oInfo in lstUserInfo)
+{
+    <tr><td>
+    @Html.ActionLink(oInfo.sFullName, "ListPdfByUser", new { UserId = oInfo.lId.ToString() })
+    </td></tr>
+}
+</table>

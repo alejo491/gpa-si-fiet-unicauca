@@ -1,0 +1,96 @@
+﻿@using MvcSEDOC.Controllers;
+@{
+    ViewBag.Title = "Autoevaluaciones";
+    string guion = "NC";
+    MvcSEDOC.Models.AutoevaluacionDocente mireporte = ViewBag.reporte;
+}
+
+@section MenuSection
+{
+    @Html.Partial("_MenuWorkChiefPartial")
+}
+
+<h2>Autoevaluaciones De Las Labores Que Dirige: </h2>
+<h2> @mireporte.nombredocente</h2>
+
+<table style="width:80%"> 
+    <tr>
+     <td><div class="ui-widget"> 
+          <div id ="work-area" style="min-height: 200px; width: 100%; padding:5px;" class="ui-widget-content"> 
+                <table class="report" style='width:100%'>
+                    <tr>
+                        <td>Fecha De Consulta</td>
+                        <td>@mireporte.fechaevaluacion</td>
+                    </tr>
+                    <tr>
+                        <td>Periodo Académico</td>
+                        <td>@mireporte.periodoanio-@mireporte.periodonum</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre Profesor</td>
+                        <td>@mireporte.nombredocente</td>
+                    </tr>
+                                        
+                                        
+                </table>
+                <br />
+                @foreach (MvcSEDOC.Models.ResAutoEvaluacionLabor laborEv in mireporte.autoevaluacioneslabores)
+                {
+                    <table id='LaborChiefs' class='report' style='width:100%'>
+                    
+                    <thead> 
+                        <tr class='sub'>                            
+                            <th align="center" >Tipo</th>
+                            <th align="center" colspan="2">Labor</th>                                                      
+                            <th align="center">Nota</th>    
+                        </tr>
+                    </thead>
+                    <tbody>                           
+                            <tr>
+                                <td>@laborEv.tipolaborcorto</td> 
+                                <td colspan="2">@laborEv.descripcion</td>                                                                  
+                                <td align="center">@((laborEv.nota == null) ? "-" : laborEv.nota.ToString())</td> 
+                            </tr>
+                   
+                    
+                        <tr>
+                            <td align="center"  colspan="4"><strong>Problema</strong></td>                                                
+                        </tr>
+                        <tr>
+                            <td align="left"><strong>Descripción</strong></td>
+                            <td align="justify" colspan="3">@laborEv.problemadescripcion</td>                                                                                    
+                        </tr>                         
+                        <tr>                                    
+                            <td align="left" ><strong>Solución</strong></td> 
+                            <td align="justify" colspan="3">@laborEv.problemasolucion</td>       
+                        </tr>
+                        <tr class='sub'>
+                            <td align="center"  colspan="4"><strong>Resultado</strong></td>                                                
+                        </tr>
+                        <tr>
+                            <td align="left" ><strong>Descripción</strong></td>
+                            <td align="justify" colspan="3">@laborEv.resultadodescripcion</td>                                                                                     
+                        </tr>                         
+                        <tr>
+                            <td align="left" ><strong>Ubicación</strong></td>
+                            <td align="justify" colspan="3">@laborEv.resultadosolucion</td> 
+                        </tr>
+                           
+                    </tbody>              
+                    
+                </table>                    
+                    <br />
+                }
+                NC : "No Calificado"
+            </div>          
+          </div>
+     </td>
+    </tr> 
+    <tr>
+        <td>@Html.ActionLink("Volver", "Index", "Teacher")</td>
+        <td align="right" >
+       @Html.ActionLink("Exportar a Excel", "ExportToExcelAutoevaluacion", "Teacher")
+       </td>
+    </tr>
+   
+</table> 

@@ -1,0 +1,29 @@
+﻿    @{
+     int periodoActual = (int)HttpContext.Current.Session["periodoActual"];
+    if (!User.IsInRole("Student"))
+     {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("ActionDenied", "Home")";
+        </script>
+     }
+       }  
+   
+    <div id="accordionMenu" optionselected="@ViewBag.optionmenu">   
+        <h3><a href="#">Evaluar</a></h3>
+        <div>
+            <p>                
+                <ul>
+                    <li>@Html.ActionLink("Evaluación Docente", "listEvaluations", "Student")</li>
+                </ul>          
+            </p>
+	    </div> 
+             
+        <h3><a href="#">Configuraciones básicas</a></h3>
+        <div>
+            <p>
+                <ul>
+                <li>@Html.ActionLink("Cambiar contraseña", "ChangePass", "Student")</li>                 
+                </ul>
+            </p>
+        </div>
+</div>
